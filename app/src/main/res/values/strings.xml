@@ -5,9 +5,12 @@
     <string name="sdt">Số điện thoại</string>
     <string name="username">Tên đăng nhập</string>
     <string name="prompt_password">Password</string>
+    <string name="full_name">Họ và tên</string>
     <string name="matkhau">Mật khẩu</string>
+    <string name="address">Địa chỉ</string>
     <string name="action_login">Login</string>
     <string name="action_register">Register</string>
+    <string name="action_sign_up">Sign Up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>

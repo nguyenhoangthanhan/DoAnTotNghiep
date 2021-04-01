@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.Register.AuthenticationSMSActivity"></activity>
-        <activity android:name=".ui.Register.RegisterActivity" />
+        <activity android:name=".ui.Register.RegisterActivity"></activity>
+        <activity android:name=".ui.Register.AuthenticationSMSActivity" />
+        <activity android:name=".ui.Register.PhoneAuthenticationActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login">
