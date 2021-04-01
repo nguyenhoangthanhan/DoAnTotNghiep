@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange001"
     tools:context=".ui.Register.RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imgTitle"
@@ -47,6 +51,22 @@
             android:padding="@dimen/_8sdp"
             android:background="@drawable/edt_sign"
             android:hint="@string/matkhau"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true" />
+
+        <EditText
+            android:textColor="@color/black"
+            android:id="@+id/edtRePasswordSign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:padding="@dimen/_8sdp"
+            android:background="@drawable/edt_sign"
+            android:hint="@string/rePassword"
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
@@ -114,9 +134,22 @@
             android:inputType="textPassword"
             android:selectAllOnFocus="true" />
 
+        <TextView
+            android:id="@+id/txtShowError"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:textSize="13sp"
+            android:visibility="invisible"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/red_Google"
+            android:text="@string/error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
     <Button
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_below="@id/formLogin"
         android:layout_weight="1"
         android:layout_centerHorizontal="true"
@@ -141,5 +174,5 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="64dp"
         android:visibility="gone"/>
-
-</RelativeLayout>
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

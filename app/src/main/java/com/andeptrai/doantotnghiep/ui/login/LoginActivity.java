@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.andeptrai.doantotnghiep.IP;
 import com.andeptrai.doantotnghiep.ui.Register.PhoneAuthenticationActivity;
+import com.andeptrai.doantotnghiep.ui.Register.RegisterActivity;
 import com.andeptrai.doantotnghiep.ui.main.MainActivity;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.model.Login;
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, PhoneAuthenticationActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
