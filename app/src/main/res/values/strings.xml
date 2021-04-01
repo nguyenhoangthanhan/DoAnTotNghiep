@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DoAnTotNghiep</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="sdt">Số điện thoại</string>
+    <string name="username">Tên đăng nhập</string>
+    <string name="prompt_password">Password</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="action_login">Login</string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>

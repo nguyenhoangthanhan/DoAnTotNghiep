@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "63700332404",
+    "project_id": "doantotnghiep-efe64",
+    "storage_bucket": "doantotnghiep-efe64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63700332404:android:f40db761ddb34a05984621",
+        "android_client_info": {
+          "package_name": "com.andeptrai.doantotnghiep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63700332404-oj6bh7tofk0ggdfbvreo9atc8sk5cpai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdKChdw-pO2ZyV6g4LubrXVqP1n1kc5XU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63700332404-oj6bh7tofk0ggdfbvreo9atc8sk5cpai.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
