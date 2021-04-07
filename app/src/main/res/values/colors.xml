@@ -5,8 +5,24 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorGray200">#999</color>
+    <color name="colorGrayeee">#eee</color>
+    <color name="colorGrayddd">#ddd</color>
+    <color name="colorGrayccc">#ccc</color>
+    <color name="colorGraybbb">#bbb</color>
+    <color name="colorGrayaaa">#aaa</color>
+    <color name="colorGray999">#999</color>
+    <color name="colorGray888">#888</color>
+    <color name="colorGray777">#777</color>
+    <color name="colorGray666">#666</color>
+    <color name="colorGray555">#555</color>
+    <color name="colorGray444">#444</color>
+    <color name="colorGray333">#333</color>
+    <color name="colorGray222">#222</color>
+    <color name="colorGray111">#111</color>
     <color name="orange001">#ffc107</color>
+    <color name="orange002">#eec107</color>
     <color name="red_050">#9a0c2a</color>
     <color name="red_Google">#ea4335</color>
+    <color name="foody_delivery">#c7f5f4</color>
+    <color name="blue_user_page_foody">#1696d2</color>
 </resources>

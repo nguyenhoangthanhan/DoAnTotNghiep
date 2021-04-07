@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrayddd"
+    tools:context=".ui.fragment.AccountFragment">
+
+    <LinearLayout
+        android:background="@color/colorGray222"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avatar_acc_frm"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:src="@drawable/img1" />
+
+        <TextView
+            android:id="@+id/name_acc_frm"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textColor="@color/colorGrayeee"
+            android:layout_weight="1"
+            android:text="Nguyễn Văn Hùng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_39sdp"
+        android:background="@color/white">
+
+        <TableRow
+            android:id="@+id/payment_row"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/circle_background_blue"
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/ic_credit_card" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:text="@string/payment"
+                android:textColor="@color/colorGray333"
+                android:textSize="@dimen/_18sdp" />
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_outline_navigate_next_24" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/history_row"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/circle_background_blue"
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/ic_history" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:text="@string/history"
+                android:textColor="@color/colorGray333"
+                android:textSize="@dimen/_18sdp" />
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_outline_navigate_next_24" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/bill_row"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/circle_background_blue"
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/ic_bill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:text="@string/bill"
+                android:textColor="@color/colorGray333"
+                android:textSize="@dimen/_18sdp" />
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_outline_navigate_next_24" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/tableLayout2"
+        android:layout_below="@+id/tableLayout1"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:id="@+id/setting_row"
+            android:gravity="center_vertical">
+            <ImageView
+                android:background="@drawable/circle_background_gray555"
+                android:padding="@dimen/_7sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_settings"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"/>
+
+            <TextView
+                android:textSize="@dimen/_18sdp"
+                android:textColor="@color/colorGray333"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:text="@string/setting_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:src="@drawable/ic_outline_navigate_next_24"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/logout_row"
+            android:gravity="center_vertical">
+            <ImageView
+                android:background="@drawable/circle_background_gray555"
+                android:padding="@dimen/_7sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_logout"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"/>
+
+            <TextView
+                android:textSize="@dimen/_18sdp"
+                android:textColor="@color/colorGray333"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:text="@string/lout_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:src="@drawable/ic_outline_navigate_next_24"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"/>
+
+        </TableRow>
+
+
+    </TableLayout>
+
+</RelativeLayout>

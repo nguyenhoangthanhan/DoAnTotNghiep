@@ -1,29 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    tools:context=".ui.main.MainActivity"><!-- Header aligned to top -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:background="@color/orange002"
+        android:gravity="center" >
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/_9sdp"
+            android:background="@drawable/search_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/search"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"/>
+
+            <EditText
+                android:background="@color/zxing_transparent"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGrayaaa"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:layout_marginStart="@dimen/_7sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorGrayaaa"
+                android:layout_gravity="center_vertical"
+                android:text="@string/HaNoi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_margin="@dimen/_8sdp"
+                android:layout_gravity="center_vertical|end"
+                android:src="@drawable/ic_down_filled_triangular_arrow"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="go"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGrayeee"
+        android:gravity="center" >
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabsHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabsListRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.tabs.TabLayout>
+
+<!--        <TableLayout-->
+<!--            android:stretchColumns="*"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <TableRow>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/icon_go_home"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_20sdp"-->
+<!--                    android:layout_margin="@dimen/_3sdp"-->
+<!--                    android:src="@drawable/ic_home" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/icon_go_list_restaurant"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_20sdp"-->
+<!--                    android:layout_margin="@dimen/_3sdp"-->
+<!--                    android:src="@drawable/ic_restaurant" />-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/icon_go_user"-->
+<!--                    android:layout_margin="@dimen/_3sdp"-->
+<!--                    android:src="@drawable/ic_user"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_20sdp"/>-->
+<!--            </TableRow>-->
+
+<!--        </TableLayout>-->
+
+    </RelativeLayout>
+    <!-- Content below header and above footer -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:background="@color/white"
+        android:gravity="center" >
+
+
+
+
+
+    </androidx.viewpager.widget.ViewPager>
+
+</RelativeLayout>

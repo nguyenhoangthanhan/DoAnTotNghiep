@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting_app.SettingAppActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:textSize="@dimen/_20sdp"
+        android:textAllCaps="true"
+        android:textColor="@color/colorGray444"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setting_account" />
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:id="@+id/avatar_row"
+            android:gravity="center_vertical">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:background="@drawable/circle_background_gray555"
+                android:padding="@dimen/_7sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"/>
+
+            <TextView
+                android:textColor="@color/colorGray333"
+                android:layout_weight="1"
+                android:textSize="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:text="@string/avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:src="@drawable/ic_outline_navigate_next_24"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/password_row"
+            android:gravity="center_vertical">
+            <ImageView
+                android:background="@drawable/circle_background_gray555"
+                android:padding="@dimen/_7sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_padlock"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"/>
+
+            <TextView
+                android:textSize="@dimen/_18sdp"
+                android:textColor="@color/colorGray333"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:text="@string/change_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:src="@drawable/ic_outline_navigate_next_24"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/private_info_row"
+            android:gravity="center_vertical">
+            <ImageView
+                android:background="@drawable/circle_background_gray555"
+                android:padding="@dimen/_7sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_user_white"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"/>
+
+            <TextView
+                android:textSize="@dimen/_18sdp"
+                android:textColor="@color/colorGray333"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:text="@string/info_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:src="@drawable/ic_outline_navigate_next_24"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"/>
+
+        </TableRow>
+
+
+    </TableLayout>
+</RelativeLayout>
