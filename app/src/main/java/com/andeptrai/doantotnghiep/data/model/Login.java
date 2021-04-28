@@ -1,12 +1,10 @@
 package com.andeptrai.doantotnghiep.data.model;
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable {
     private String username;
     private String password;
-
-    public static String currentUsername;
-    public static int currentId;
-    public static String currentPwd;
 
     public String getUsername() {
         return username;

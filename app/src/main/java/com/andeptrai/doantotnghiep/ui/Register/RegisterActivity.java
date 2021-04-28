@@ -1,8 +1,5 @@
 package com.andeptrai.doantotnghiep.ui.Register;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.andeptrai.doantotnghiep.IP;
 import com.andeptrai.doantotnghiep.R;
-import com.andeptrai.doantotnghiep.data.model.Login;
-import com.andeptrai.doantotnghiep.library_code.CheckInfoSignUp;
-import com.andeptrai.doantotnghiep.ui.login.LoginActivity;
+import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.ui.main.MainActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -105,8 +103,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         if (response.trim().equals("Register success")){
                             Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            Login.currentUsername = usernameNew;
-                            Login.currentPwd = passwordNew;
+                            InfoUserCurr.currentUsername = usernameNew;
+                            InfoUserCurr.currentPwd = passwordNew;
                             startActivity(intent);
                         }
                         else if(response.trim().equals("Error when insert into Database")){

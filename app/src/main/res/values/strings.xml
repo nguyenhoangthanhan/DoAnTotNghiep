@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">DoAnTotNghiep</string>
+    <string name="save">Lưu</string>
+    <string name="write_new_cmt">Viết bình luận</string>
+    <string name="private_info">Thông tin cá nhân</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="sdt">Số điện thoại</string>
@@ -35,4 +38,7 @@
     <string name="info_contact">Thông tin liên hệ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  API Key  -->
+    <string name="map_api_key">AIzaSyAVoMkxOfbKNH0Cufu-ZnTFi1w4diUKmRY</string>
 </resources>

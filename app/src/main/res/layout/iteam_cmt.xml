@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_item_cmt"
+    android:layout_marginLeft="@dimen/_2sdp"
+    android:layout_marginRight="@dimen/_2sdp"
+    android:paddingStart="@dimen/_5sdp"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_7sdp"
+    android:paddingBottom="@dimen/_5sdp">
+
+
+    <LinearLayout
+        android:id="@+id/view_info_cmter"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avt_cmt"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/restaurant1" />
+
+        <TextView
+            android:textColor="@color/colorGray111"
+            android:textSize="@dimen/_16sdp"
+            android:id="@+id/cmter_name"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:text="Thu Hằng" />
+
+        <RatingBar
+            android:layout_gravity="top"
+            android:stepSize="0.1"
+            android:id="@+id/cmter_ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:max="5" />
+
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:id="@+id/ic_edit_dlt_me"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_gravity="top"
+            android:src="@drawable/ic_more" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/view_info_cmter"
+        android:background="@color/colorGrayddd"
+        android:text="TextView" />
+
+    <TextView
+        android:paddingTop="@dimen/_8sdp"
+        android:textColor="@color/colorGray222"
+        android:id="@+id/txtCmtContent"
+        android:textSize="@dimen/_14sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt"
+        android:text="ABCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" />
+
+    <TextView
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_below="@id/txtCmtContent"
+        android:id="@+id/txtLikeCmtNumber"
+        android:textSize="@dimen/_8sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorGray444"
+        android:text="2 Thích - 3 Bình luận - 4 Chia sẻ" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLikeCmtNumber"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ic_post_like"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_heart" />
+
+            <TextView
+                android:textColor="@color/colorGray333"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/txtPostLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thích" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ic_post_cmt"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_comment" />
+
+            <TextView
+                android:id="@+id/txtPostCmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:text="Trả lời"
+                android:textColor="@color/colorGray333" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ic_post_share"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_share2" />
+
+            <TextView
+                android:textColor="@color/colorGray333"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:id="@+id/txtPostShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chia sẻ" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

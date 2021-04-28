@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail_restaurant.RestaurantDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_tittle"
+        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_230sdp"
+        android:src="@drawable/quan_an_viet" />
+
+    <TextView
+        android:textColor="@color/colorGray222"
+        android:textStyle="bold"
+        android:textSize="@dimen/_18sdp"
+        android:layout_below="@id/img_tittle"
+        android:id="@+id/txtTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PoLLy - Gà rán Nhật Bản" />
+
+    <TextView
+        android:id="@+id/line1dp_1"
+        android:layout_below="@id/txtTittle"
+        android:background="@color/colorGrayaaa"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/viewInfoCmtReview"
+        android:layout_below="@id/line1dp_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/ViewCmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/colorGray222"
+                android:textStyle="bold"
+                android:textSize="@dimen/_16sdp"
+                android:text="120"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textColor="@color/colorGray999"
+                android:text="Bình luận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="@dimen/_5sdp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:id="@+id/ViewReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/colorGray222"
+                android:textStyle="bold"
+                android:textSize="@dimen/_16sdp"
+                android:text="120"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textColor="@color/colorGray999"
+                android:text="Đánh giá"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:padding="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:gravity="center"
+            android:id="@+id/viewShowReviewPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_baseline_star_24"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"/>
+
+            <TextView
+                android:textSize="@dimen/_8sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="4.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line1dp_2"
+        android:layout_below="@id/viewInfoCmtReview"
+        android:background="@color/colorGrayaaa"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"/>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_below="@id/line1dp_2"
+        android:orientation="horizontal"
+        android:id="@+id/viewOpenTime_Contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:padding="@dimen/_5sdp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:id="@+id/viewOpenTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/green_4caf50"
+                android:textStyle="bold"
+                android:textSize="@dimen/_16sdp"
+                android:text="Mở cửa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textColor="@color/colorGray999"
+                android:text="9h - 23h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:padding="@dimen/_5sdp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:id="@+id/ViewContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:padding="@dimen/_7sdp"
+                android:background="@drawable/contact_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/ic_phone_eee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="Liên hệ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line1dp_3"
+        android:layout_below="@id/viewOpenTime_Contact"
+        android:background="@color/colorGrayaaa"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"/>
+
+    <LinearLayout
+        android:id="@+id/cmt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1dp_3"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/_6sdp"
+            android:text="155 Bình luận"
+            android:textColor="@color/colorGray333" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/colorGray222"
+            android:padding="@dimen/_6sdp"
+            android:textColor="@color/colorGray333" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/view_add_cmt"
+        android:gravity="center_vertical"
+        android:layout_below="@id/cmt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ic_add_cmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_circle_24" />
+
+        <TextView
+            android:id="@+id/txtAddCmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm bình luận" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line1dp_4"
+        android:layout_below="@id/view_add_cmt"
+        android:background="@color/colorGrayaaa"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"/>
+
+        <LinearLayout
+            android:layout_below="@id/line1dp_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewCmt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    <!--    <fragment-->
+<!--        android:id="@+id/restaurant_pos"-->
+<!--        android:layout_below="@id/viewOpenTime_Contact"-->
+<!--        android:name="com.google.android.gms.maps.MapFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

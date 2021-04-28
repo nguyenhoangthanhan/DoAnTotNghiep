@@ -2,26 +2,27 @@ package com.andeptrai.doantotnghiep.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.andeptrai.doantotnghiep.IP;
-import com.andeptrai.doantotnghiep.ui.Register.PhoneAuthenticationActivity;
+import com.andeptrai.doantotnghiep.R;
+import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.ui.Register.RegisterActivity;
 import com.andeptrai.doantotnghiep.ui.main.MainActivity;
-import com.andeptrai.doantotnghiep.R;
-import com.andeptrai.doantotnghiep.data.model.Login;
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,16 +85,33 @@ public class LoginActivity extends AppCompatActivity {
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (response.trim().equals("Login success")){
-                    Toast.makeText(LoginActivity.this, "Login thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("tk", username);
-//                    bundle.putString("mk", password);
-//                    intent.putExtras(bundle);
-                    Login.currentUsername = username;
-                    Login.currentPwd = password;
-                    startActivity(intent);
+                if (!response.trim().equals("Login fail")){
+
+                    try {
+                        JSONObject jObject = new JSONObject(response);
+                        InfoUserCurr.currentId = jObject.getInt("Id_customer");
+                        InfoUserCurr.currentUsername = jObject.getString("Username");
+                        InfoUserCurr.currentPhone = jObject.getString("Phone");
+                        InfoUserCurr.currentPwd = jObject.getString("Password");
+                        InfoUserCurr.currentEmail = jObject.getString("Email");
+                        InfoUserCurr.currentName = jObject.getString("Name");
+                        InfoUserCurr.currentAddress = jObject.getString("Address");
+                        Toast.makeText(LoginActivity.this, "Login success! - " + InfoUserCurr.currentId +
+                                "+" + InfoUserCurr.currentUsername +
+                                "+" + InfoUserCurr.currentPhone +
+                                "+" + InfoUserCurr.currentPwd +
+                                "+" + InfoUserCurr.currentEmail +
+                                "+" + InfoUserCurr.currentName +
+                                "+" + InfoUserCurr.currentAddress, Toast.LENGTH_LONG).show();
+
+//                        Toast.makeText(LoginActivity.this, "Login thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } catch (JSONException e) {
+
+                        Toast.makeText(LoginActivity.this, "Loi! -- " + e.toString(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "Login fail!", Toast.LENGTH_SHORT).show();

@@ -25,6 +25,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:textColor="@color/colorGrayeee"
             android:layout_weight="1"
+            android:textSize="@dimen/_18sdp"
             android:text="Nguyễn Văn Hùng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

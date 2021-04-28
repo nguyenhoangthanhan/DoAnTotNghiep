@@ -24,8 +24,8 @@
             android:id="@+id/avatar_row"
             android:gravity="center_vertical">
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar_setting"
                 android:background="@drawable/circle_background_gray555"
-                android:padding="@dimen/_7sdp"
                 android:layout_margin="@dimen/_5sdp"
                 android:layout_width="@dimen/_28sdp"
                 android:layout_height="@dimen/_28sdp"/>

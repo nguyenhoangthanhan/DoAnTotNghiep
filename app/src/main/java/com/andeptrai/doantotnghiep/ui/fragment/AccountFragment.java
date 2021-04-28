@@ -1,17 +1,18 @@
 package com.andeptrai.doantotnghiep.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.andeptrai.doantotnghiep.R;
-import com.andeptrai.doantotnghiep.ui.main.MainActivity;
+import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
+import com.andeptrai.doantotnghiep.ui.setting_app.SettingAppActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -74,12 +75,14 @@ public class AccountFragment extends Fragment {
         logout_row = view.findViewById(R.id.logout_row);
         logout_row.setOnClickListener(logoutListener);
         setting_row = view.findViewById(R.id.setting_row);
+        setting_row.setOnClickListener(goSettingListener);
         bill_row = view.findViewById(R.id.bill_row);
         history_row = view.findViewById(R.id.history_row);
         payment_row = view.findViewById(R.id.payment_row);
 
         img_avatar_acc_frm = view.findViewById(R.id.img_avatar_acc_frm);
         name_acc_frm = view.findViewById(R.id.name_acc_frm);
+        name_acc_frm.setText(InfoUserCurr.currentName);
 
 
 
@@ -90,6 +93,15 @@ public class AccountFragment extends Fragment {
         @Override
         public void onClick(View view) {
             getActivity().finish();
+        }
+    };
+
+    private View.OnClickListener goSettingListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            Intent intent = new Intent(getActivity(), SettingAppActivity.class);
+            startActivity(intent);
         }
     };
 }

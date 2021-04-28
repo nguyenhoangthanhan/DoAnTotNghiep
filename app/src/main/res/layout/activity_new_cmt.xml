@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail_restaurant.NewCmtActivity">
+
+
+    <LinearLayout
+        android:id="@+id/viewBack_Post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange001"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp">
+
+        <ImageView
+            android:id="@+id/icPageBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:text="Viết bình luận" />
+
+        <TextView
+            android:id="@+id/txtPostNewCmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post" />
+    </LinearLayout>
+
+    <RatingBar
+        android:layout_below="@id/viewBack_Post"
+        android:id="@+id/ratingBarNewCmt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/bg_blank"
+        android:layout_below="@+id/ratingBarNewCmt"
+        android:id="@+id/edtTitleCmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Tiêu đề (không bắt buộc)" />
+
+    <EditText
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/bg_blank"
+        android:layout_below="@id/edtTitleCmt"
+        android:id="@+id/edtContentCmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Nội dung" />
+</RelativeLayout>

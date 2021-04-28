@@ -1,24 +1,44 @@
 package com.andeptrai.doantotnghiep.ui.main;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-
+import com.andeptrai.doantotnghiep.IP;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.ViewPagerAdapter;
+import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     TabItem tabsHome, tabsListRestaurant, tabAccount;
     ViewPager viewPager;
 
+    private static String urlGetInfoRestaurant = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getInfoRestaurant.php";
+    ArrayList<InfoRestaurant> infoRestaurants = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getDataRestaurant();
 
         tabLayout = findViewById(R.id.tabLayout);
         tabsHome = findViewById(R.id.tabsHome);
@@ -67,8 +87,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void getDataRestaurant(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, urlGetInfoRestaurant, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+//                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                        for (int i = 0; i < response.length();i++){
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                infoRestaurants.add(new InfoRestaurant(
+                                        object.getString("Id_restaurant"),
+                                        object.getString("Name_restaurant"),
+                                        object.getInt("Phone_restaurant"),
+                                        object.getString("Password"),
+                                        object.getString("Address_restaurant"),
+                                        object.getDouble("Review_point"),
+                                        object.getInt("Status_restaurant"),
+                                        object.getString("Short_description"),
+                                        object.getString("Promotion")
+                                ));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        requestQueue.add(arrayRequest);
+    }
+
     private void setupViewPager(){
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), infoRestaurants);
         viewPager.setAdapter(viewPagerAdapter);
     }
 }

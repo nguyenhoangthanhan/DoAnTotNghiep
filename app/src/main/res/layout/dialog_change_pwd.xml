@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@color/colorBlue"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textSize="26sp"
+        android:textColor="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đổi mật khẩu" />
+
+    <TextView
+        android:textColor="#000000"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mật khẩu cũ" />
+
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/edtOldPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:hint="input old password"/>
+
+    <TextView
+        android:textColor="#000000"
+        android:layout_marginTop="25dp"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mật khẩu mới" />
+
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/edtNewPwd"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Input new phone" />
+
+    <TextView
+        android:textColor="#000000"
+        android:layout_marginTop="25dp"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xác nhận lại mật khẩu" />
+
+    <EditText
+        android:layout_margin="10dp"
+        android:id="@+id/edtReNewPwd"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Input new phone" />
+
+    <TableRow
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnChangePwd"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blue2"
+            android:text="Change" />
+
+        <Button
+            android:id="@+id/btnCancelChangePwd"
+            android:layout_marginLeft="15dp"
+            android:background="@color/blue2"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
+    </TableRow>
+</LinearLayout>
