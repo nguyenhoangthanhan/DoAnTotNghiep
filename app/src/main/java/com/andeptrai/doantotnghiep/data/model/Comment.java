@@ -10,11 +10,23 @@ public class Comment  implements Serializable {
     private String idRestaurant;
     private String content;
     private int likeNumber;
+    private String listLike;
     private int cmtNumber;
     private int shareNumber;
     private String time_create_cmt;
     private boolean likeIt;
     private double pointReview;
+
+    public Comment() {
+    }
+
+    public String getListLike() {
+        return listLike;
+    }
+
+    public void setListLike(String listLike) {
+        this.listLike = listLike;
+    }
 
     public Comment(String idComt, int idUser, String nameCmter, String idRestaurant
             , String content, int likeNumber, int cmtNumber, int shareNumber, String time_create_cmt, boolean likeIt, double pointReview) {

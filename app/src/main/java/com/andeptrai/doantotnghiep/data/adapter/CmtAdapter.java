@@ -52,14 +52,32 @@ public class CmtAdapter extends RecyclerView.Adapter {
         cmtViewHolder.txtCmtContent.setText(comment.getContent());
         cmtViewHolder.txtLikeCmtNumber
                 .setText(comment.getLikeNumber() + " Thích - " + comment.getCmtNumber() + " Trả lời - " + comment.getShareNumber() + " Chia sẻ");
-        if (comment.isLikeIt()){
-            cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart2);
-            cmtViewHolder.txtPostLike.setTextColor(Color.RED);
+
+        //check like it
+        String listIdLike = comment.getListLike();
+        int checkId = 0;
+        int check = 0;
+        for (int j = 0; j < listIdLike.length(); j++){
+            if (listIdLike.charAt(j) >= '0' && listIdLike.charAt(j) <= '9'){
+                checkId = checkId*10 + Integer.parseInt(String.valueOf(listIdLike.charAt(j)));
+            }
+            else{
+                if (checkId == InfoUserCurr.currentId){
+                    cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart2);
+                    cmtViewHolder.txtPostLike.setTextColor(Color.RED);
+                    check = 1;
+                    break;
+                }
+            }
         }
-        else{
+
+        if (check == 0){
             cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart);
             cmtViewHolder.txtPostLike.setTextColor(Color.rgb(51, 51, 51));
         }
+        //end check like it
+
+
         if (comment.getPointReview() != -1){
             cmtViewHolder.cmter_ratingBar.setRating((float) comment.getPointReview());
         }
@@ -71,31 +89,13 @@ public class CmtAdapter extends RecyclerView.Adapter {
         cmtViewHolder.ic_post_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (comment.isLikeIt()){
-                    comment.setLikeIt(false);
-                    cmtViewHolder.txtPostLike.setTextColor(Color.rgb(51, 51, 51));
-                    cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart);
-                }
-                else{
-                    comment.setLikeIt(true);
-                    cmtViewHolder.txtPostLike.setTextColor(Color.RED);
-                    cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart2);
-                }
+                setLikeAndUnlike(comment, cmtViewHolder);
             }
         });
         cmtViewHolder.txtPostLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (comment.isLikeIt()){
-                    comment.setLikeIt(false);
-                    cmtViewHolder.txtPostLike.setTextColor(Color.rgb(51, 51, 51));
-                    cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart);
-                }
-                else{
-                    comment.setLikeIt(true);
-                    cmtViewHolder.txtPostLike.setTextColor(Color.RED);
-                    cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart2);
-                }
+                setLikeAndUnlike(comment, cmtViewHolder);
             }
         });
 
@@ -123,6 +123,41 @@ public class CmtAdapter extends RecyclerView.Adapter {
 
             }
         });
+    }
+
+    private void setLikeAndUnlike(Comment comment, CmtViewHolder cmtViewHolder) {
+            String listIdLike = comment.getListLike();
+            int checkId = 0;
+            int check = 0;
+            for (int j = 0; j < listIdLike.length(); j++){
+                if (listIdLike.charAt(j) >= '0' && listIdLike.charAt(j) <= '9'){
+                    checkId = checkId*10 + Integer.parseInt(String.valueOf(listIdLike.charAt(j)));
+                }
+                else{
+                    if (checkId == InfoUserCurr.currentId){
+                        check = 1;
+                        cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart);
+                        cmtViewHolder.txtPostLike.setTextColor(Color.rgb(51, 51, 51));
+                        listIdLike = listIdLike.replace(InfoUserCurr.currentId + " ,", "");
+                        listIdLike = listIdLike.replace(", " + InfoUserCurr.currentId, "");
+                        comment.setListLike(listIdLike);
+                        updateInDB(comment);
+                        break;
+                    }
+                }
+            }
+
+            if (check == 0){
+                cmtViewHolder.ic_post_like.setImageResource(R.drawable.ic_heart2);
+                cmtViewHolder.txtPostLike.setTextColor(Color.RED);
+                listIdLike += ", " + InfoUserCurr.currentId;
+                comment.setListLike(listIdLike);
+                updateInDB(comment);
+            }
+    }
+
+    private void updateInDB(Comment comment) {
+        
     }
 
     @Override

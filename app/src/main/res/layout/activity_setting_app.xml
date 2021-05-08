@@ -6,15 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ui.setting_app.SettingAppActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:textSize="@dimen/_20sdp"
-        android:textAllCaps="true"
-        android:textColor="@color/colorGray444"
+    <LinearLayout
+        android:id="@+id/viewBack_Post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/setting_account" />
+        android:background="@color/orange001"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp">
+
+        <ImageView
+            android:id="@+id/icPageBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:text="@string/setting_account" />
+
+    </LinearLayout>
+
     <TableLayout
+        android:layout_below="@id/viewBack_Post"
         android:id="@+id/tableLayout1"
         android:background="@color/white"
         android:layout_width="match_parent"

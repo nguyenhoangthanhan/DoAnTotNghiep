@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SettingAppActivity extends AppCompatActivity {
 
     TableRow avatar_row, password_row, private_info_row;
+    ImageView icPageBack;
     CircleImageView avatar_setting;
     private static String urlChangePassword = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/changePassword.php";
 
@@ -52,6 +54,14 @@ public class SettingAppActivity extends AppCompatActivity {
         password_row.setOnClickListener(changePasswordClickListener);
         private_info_row = findViewById(R.id.private_info_row);
         private_info_row.setOnClickListener(openChangePrivateInfoListener);
+
+        icPageBack = findViewById(R.id.icPageBack);
+        icPageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 

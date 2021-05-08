@@ -18,6 +18,8 @@
         android:src="@drawable/quan_an_viet" />
 
     <TextView
+
+        android:layout_marginStart="@dimen/_5sdp"
         android:textColor="@color/colorGray222"
         android:textStyle="bold"
         android:textSize="@dimen/_18sdp"
@@ -27,9 +29,21 @@
         android:layout_height="wrap_content"
         android:text="PoLLy - Gà rán Nhật Bản" />
 
+        <TextView
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@color/colorGray222"
+            android:textStyle="normal"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp"
+            android:layout_below="@id/txtTittle"
+            android:id="@+id/txtAddressRes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="so 1 hoang cau, dich vong, cau giay, ha noi" />
+
     <TextView
         android:id="@+id/line1dp_1"
-        android:layout_below="@id/txtTittle"
+        android:layout_below="@id/txtAddressRes"
         android:background="@color/colorGrayaaa"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"/>
@@ -52,12 +66,13 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:textColor="@color/colorGray222"
-                android:textStyle="bold"
-                android:textSize="@dimen/_16sdp"
-                android:text="120"
+                android:id="@+id/txtCmtNumber"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="120"
+                android:textColor="@color/colorGray222"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
 
             <TextView
                 android:textColor="@color/colorGray999"
@@ -78,12 +93,13 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:textColor="@color/colorGray222"
-                android:textStyle="bold"
-                android:textSize="@dimen/_16sdp"
-                android:text="120"
+                android:id="@+id/txtReviewNumber"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="120"
+                android:textColor="@color/colorGray222"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
 
             <TextView
                 android:textColor="@color/colorGray999"
@@ -107,14 +123,14 @@
                 android:layout_height="@dimen/_40sdp"/>
 
             <TextView
-                android:textSize="@dimen/_8sdp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:text="4.5"
+                android:id="@+id/txtReviewPoint"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="4.5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8sdp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
