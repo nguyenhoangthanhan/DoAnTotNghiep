@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/_15sdp"
     android:background="@color/orange001"
     tools:context=".ui.Register.RegisterActivity">
 
@@ -131,7 +132,6 @@
             android:hint="@string/address"
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"
-            android:inputType="textPassword"
             android:selectAllOnFocus="true" />
 
         <TextView

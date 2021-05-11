@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_weight="1"
-            android:text="Bình luận" />
+            android:text="Trả lời" />
 
     </LinearLayout>
 
@@ -193,7 +193,8 @@
         </LinearLayout>
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/viewMyReply"
         android:layout_below="@id/viewLikeCmtShare"
         android:paddingTop="@dimen/_5sdp"
@@ -211,22 +212,67 @@
 
 
             <EditText
+
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:paddingTop="@dimen/_5sdp"
                 android:paddingBottom="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:background="@drawable/bg_reply_cmt"
-                android:layout_toEndOf="@id/imgMeAvatarReply"
                 android:id="@+id/edtMeReplyCmt"
                 android:textSize="@dimen/_11sdp"
                 android:textColor="@color/colorGray555"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:hint="Viết trả lời..." />
 
-    </RelativeLayout>
+        <ImageView
+            android:visibility="visible"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/img_send_reply_cmt"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_send" />
+
+        <LinearLayout
+            android:id="@+id/viewOkCancelEditReplyContent"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/black"
+                android:layout_margin="@dimen/_2sdp"
+                android:paddingLeft="@dimen/_3sdp"
+                android:paddingRight="@dimen/_3sdp"
+                android:background="@color/colorGrayddd"
+                android:textSize="@dimen/_8sdp"
+                android:id="@+id/btnOkNewReplyContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ok" />
+
+            <TextView
+                android:textColor="@color/black"
+                android:layout_margin="@dimen/_2sdp"
+                android:paddingLeft="@dimen/_3sdp"
+                android:paddingRight="@dimen/_3sdp"
+                android:background="@color/colorGrayddd"
+                android:textSize="@dimen/_8sdp"
+                android:id="@+id/btnCancelNewReplyContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewReply"

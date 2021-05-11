@@ -5,44 +5,51 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
-import com.andeptrai.doantotnghiep.ui.fragment.AccountFragment;
-import com.andeptrai.doantotnghiep.ui.fragment.HomeFragment;
-import com.andeptrai.doantotnghiep.ui.fragment.ListRestaurantFragment;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    ArrayList<InfoRestaurant> infoRestaurantArrayList;
+    private final List<Fragment> mFragmentList = new ArrayList<>();
+    private final List<String> mFragmentTitleList = new ArrayList<>();
 
     private int numOfTabs;
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int numOfTabs, ArrayList<InfoRestaurant> infoRestaurantArrayList) {
+    public ViewPagerAdapter(@NonNull FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
-        this.infoRestaurantArrayList = infoRestaurantArrayList;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                return new HomeFragment(infoRestaurantArrayList);
-            case 1:
-                return new ListRestaurantFragment();
-            case 2:
-                return new AccountFragment();
-            default:
-                return null;
-
-        }
+//        switch (position){
+//            case 0:
+//                return new HomeFragment().newInstance(infoRestaurantArrayList);
+//            case 1:
+//                return new ListRestaurantFragment();
+//            case 2:
+//                return new AccountFragment();
+//            default:
+//                return null;
+//
+//        }
+        return mFragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return numOfTabs;
+        return mFragmentList.size();
     }
 
+    public void addFrag(Fragment fragment, String title) {
+        mFragmentList.add(fragment);
+//        mFragmentTitleList.add(title);
+    }
+//
+//    @Nullable
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//        return mFragmentTitleList.get(position);
+//    }
 }

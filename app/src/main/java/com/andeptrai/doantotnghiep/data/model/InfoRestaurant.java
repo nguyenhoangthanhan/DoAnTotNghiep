@@ -1,6 +1,8 @@
 package com.andeptrai.doantotnghiep.data.model;
 
-public class InfoRestaurant {
+import java.io.Serializable;
+
+public class InfoRestaurant implements Serializable {
     private String id_restaurant;
     private String name_restaurant;
     private int phone_restaurant;

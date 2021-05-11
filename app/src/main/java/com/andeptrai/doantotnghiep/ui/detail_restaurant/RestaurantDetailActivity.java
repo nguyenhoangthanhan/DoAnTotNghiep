@@ -12,10 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.andeptrai.doantotnghiep.IP;
+import com.andeptrai.doantotnghiep.CODE;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.CmtAdapter;
 import com.andeptrai.doantotnghiep.data.model.Comment;
+import com.andeptrai.doantotnghiep.interf.InterfCmt;
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,20 +32,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RestaurantDetailActivity extends AppCompatActivity {
+import static com.andeptrai.doantotnghiep.URL.urlDeleteCmtById;
+import static com.andeptrai.doantotnghiep.URL.urlGetAllCmtByIdRes;
+import static com.andeptrai.doantotnghiep.URL.urlGetCmtReviewPointNumber;
+
+public class RestaurantDetailActivity extends AppCompatActivity implements InterfCmt {
 
     ImageView ic_add_cmt;
-    TextView txtAddCmt, txtTittle, txtReviewPoint, txtAddressRes, txtReviewNumber, txtCmtNumber;
+    TextView txtAddCmt, txtTittle, txtReviewPoint, txtAddressRes, txtReviewNumber, txtCmtNumber, txtCmtNumber2;
 
     RecyclerView recycleViewCmt;
     CmtAdapter cmtAdapter;
     ArrayList<Comment> commentArrayList;
 
 
-    private static final int RESULT_ADD_CMT = 1000;
 
-    private static String urlGetAllCmtByIdRes = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllCmtByIdRes.php";
-    private static String urlGetCmtReviewPointNumber = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getCmtReviewPointNumber.php";
+    public static int positionOpenReplyCmt = -1;
+    public static int cmtNumber = -1;
+    public static int rwNumber = -1;
+    public static String idResCurr = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
         txtReviewNumber = findViewById(R.id.txtReviewNumber);
         txtCmtNumber = findViewById(R.id.txtCmtNumber);
+        txtCmtNumber2 = findViewById(R.id.txtCmtNumber2);
 
         setInfoResCurr();
 
@@ -78,7 +85,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 //        commentArrayList.get(0).setIdUser(8);
 //        commentArrayList.get(1).setIdUser(1);
 
-        cmtAdapter = new CmtAdapter(commentArrayList, this);
+        cmtAdapter = new CmtAdapter(commentArrayList, this, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recycleViewCmt.setAdapter(cmtAdapter);
         recycleViewCmt.setLayoutManager(linearLayoutManager);
@@ -96,19 +103,31 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         Intent intentId = getIntent();
         final String Id_restaurant = intentId.getStringExtra("Id_restaurant");
         intent.putExtra("idRes", Id_restaurant);
-        startActivityForResult(intent, RESULT_ADD_CMT);
+        startActivityForResult(intent, CODE.RESULT_ADD_CMT);
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_ADD_CMT){
+        if (requestCode == CODE.RESULT_ADD_CMT){
             Comment c = (Comment) data.getSerializableExtra("newCmt");
             commentArrayList.add(0, c);
             cmtAdapter.notifyItemInserted(0);
+            getCmtReviewNumber(idResCurr);
+        }
+        if (requestCode == CODE.RESULT_OPEN_REPLY_CMT && resultCode == CODE.RESULT_OPEN_REPLY_CMT){
+            Comment c = (Comment) data.getSerializableExtra("editCmt");
+            commentArrayList.remove(positionOpenReplyCmt);
+            commentArrayList.add(positionOpenReplyCmt, c);
+            cmtAdapter.notifyItemChanged(positionOpenReplyCmt);
         }
 
+        if (requestCode == CODE.RESULT_OPEN_REPLY_CMT && resultCode == CODE.RESULT_DELETE_CMT){
+            commentArrayList.remove(positionOpenReplyCmt);
+            cmtAdapter.notifyDataSetChanged();
+            getCmtReviewNumber(idResCurr);
+        }
     }
 
 
@@ -116,6 +135,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     private void setInfoResCurr() {
         Intent intent = getIntent();
         final String Id_restaurant = intent.getStringExtra("Id_restaurant");
+        idResCurr = Id_restaurant;
         getCmtReviewNumber(Id_restaurant);
         final String Name_restaurant = intent.getStringExtra("Name_restaurant");
         txtTittle.setText(Name_restaurant);
@@ -146,24 +166,10 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                             comment.setNameCmter(jsonObject.getString("Name_user"));
                             comment.setIdRestaurant(jsonObject.getString("Id_restaurant"));
                             comment.setContent(jsonObject.getString("Content"));
+                            comment.setCmtNumber(jsonObject.getInt("Reply_number"));
 
                             String listIdLike = jsonObject.getString("List_id_like_cmt");
                             comment.setListLike(listIdLike);
-                            int likeNumber = 0;
-                            for (int j = 0; j < listIdLike.length(); j++){
-                                if (listIdLike.charAt(j) >= '0' && listIdLike.charAt(j) <= '9'){
-                                    likeNumber++;
-                                    int k;
-                                    for (k = j + 1; k < listIdLike.length(); k++){
-                                        if (listIdLike.charAt(k) >= '0' &&  listIdLike.charAt(k) <= '9') {
-                                            k++;
-                                        }
-                                        else break;
-                                    }
-                                    j = k - 1;
-                                }
-                            }
-                            comment.setLikeNumber(likeNumber);
                             comment.setTime_create_cmt(jsonObject.getString("Time_create_cmt"));
                             comment.setPointReview(jsonObject.getDouble("Point_review"));
 
@@ -216,17 +222,23 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                         if (jsonArray.length() < 2) {
                             JSONObject jsonObject = (JSONObject) jsonArray.get(0);
                             try {
-                                txtCmtNumber.setText(jsonObject.getString("Cmt_rw_number"));
-                                txtReviewNumber.setText(jsonObject.getString("Cmt_rw_number"));
+                                cmtNumber = Integer.parseInt(jsonObject.getString("Cmt_rw_number"));
+                                txtCmtNumber.setText(cmtNumber+"");
+                                txtCmtNumber2.setText((cmtNumber) + " bình luận");
+                                rwNumber = Integer.parseInt(jsonObject.getString("Cmt_rw_number"));
+                                txtReviewNumber.setText(rwNumber+"");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         } else {
                             try {
                                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(0);
-                                txtCmtNumber.setText(jsonObject1.getString("Cmt_rw_number"));
+                                cmtNumber = Integer.parseInt(jsonObject1.getString("Cmt_rw_number"));
+                                txtCmtNumber.setText(cmtNumber+"");
+                                txtCmtNumber2.setText((cmtNumber) + " bình luận");
                                 JSONObject jsonObject2 = (JSONObject) jsonArray.get(1);
-                                txtReviewNumber.setText(jsonObject2.getString("Cmt_rw_number"));
+                                rwNumber = Integer.parseInt(jsonObject2.getString("Cmt_rw_number"));
+                                txtReviewNumber.setText(rwNumber+"");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -255,4 +267,67 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    @Override
+    public void openReplyCmtClickListener(Comment comment, int position) {
+        openThisReplyCmt(comment, position);
+    }
+
+    @Override
+    public void deleteCmtClickListener(Comment comment, int position) {
+        deleteCmt(comment, position);
+    }
+
+
+    private void deleteCmt(final Comment comment, final int position) {
+        final String idCmt = comment.getIdComt();
+
+        RequestQueue requestQueue = Volley.newRequestQueue(RestaurantDetailActivity.this);
+        StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlDeleteCmtById
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.trim().equals("Delete cmt success")){
+                    commentArrayList.remove(comment);
+                    cmtAdapter.notifyDataSetChanged();
+                    getCmtReviewNumber(idResCurr);
+                    Toast.makeText(RestaurantDetailActivity.this, "Delete cmt success!", Toast.LENGTH_SHORT).show();
+                }
+                else if(response.trim().equals("Delete cmt success, delete all reply of this cmt fail")){
+                    Toast.makeText(RestaurantDetailActivity.this, "Delete cmt success, delete all reply of this cmt fail!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(RestaurantDetailActivity.this, "Delete cmt fail!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RestaurantDetailActivity.this, "Update cmt content error!---"+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("idCmt", idCmt);
+
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+
+    private void openThisReplyCmt(Comment comment, int position) {
+        Intent intent = new Intent(this, ReplyCmtActivity.class);
+        intent.putExtra("info_cmt", comment);
+        startActivityForResult(intent, CODE.RESULT_OPEN_REPLY_CMT);
+        positionOpenReplyCmt = position;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

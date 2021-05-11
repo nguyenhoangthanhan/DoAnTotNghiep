@@ -6,10 +6,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.andeptrai.doantotnghiep.IP;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.ViewPagerAdapter;
 import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
+import com.andeptrai.doantotnghiep.ui.fragment.AccountFragment;
+import com.andeptrai.doantotnghiep.ui.fragment.HomeFragment;
+import com.andeptrai.doantotnghiep.ui.fragment.ListRestaurantFragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,12 +27,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.andeptrai.doantotnghiep.URL.urlGetInfoRestaurant;
+
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     TabItem tabsHome, tabsListRestaurant, tabAccount;
     ViewPager viewPager;
 
-    private static String urlGetInfoRestaurant = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getInfoRestaurant.php";
     ArrayList<InfoRestaurant> infoRestaurants = new ArrayList<>();
 
     @Override
@@ -125,7 +128,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(){
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), infoRestaurants);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        Bundle bundle =new Bundle();
+        bundle.putSerializable("infoRestaurantArrayList", infoRestaurants);
+
+        HomeFragment homeFragment = new HomeFragment();
+        ListRestaurantFragment listRestaurantFragment = new ListRestaurantFragment();
+        AccountFragment accountFragment = new AccountFragment();
+        homeFragment.setArguments(bundle);
+        viewPagerAdapter.addFrag(homeFragment, "homeFrm");
+        viewPagerAdapter.addFrag(listRestaurantFragment, "listResFrm");
+        viewPagerAdapter.addFrag(accountFragment, "AccountFrm");
+
         viewPager.setAdapter(viewPagerAdapter);
     }
 }

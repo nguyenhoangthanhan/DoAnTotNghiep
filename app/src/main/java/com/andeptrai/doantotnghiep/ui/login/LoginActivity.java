@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.andeptrai.doantotnghiep.IP;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.ui.Register.RegisterActivity;
@@ -27,12 +26,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.andeptrai.doantotnghiep.URL.urlCheckUser;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtUsername, edtpassword;
     Button btnlogin, btnRegister;
 
-    private static String urlCheckUser = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/checkInfoLogin.php";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

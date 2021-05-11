@@ -15,15 +15,15 @@ import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
 import com.andeptrai.doantotnghiep.ui.detail_restaurant.RestaurantDetailActivity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RestaurantAdapter extends RecyclerView.Adapter {
 
-    private List listRestaurant;
+    private ArrayList<InfoRestaurant> listRestaurant;
 
     private Context context;
 
-    public RestaurantAdapter(List listRestaurant, Context context) {
+    public RestaurantAdapter(ArrayList<InfoRestaurant>  listRestaurant, Context context) {
         this.listRestaurant = listRestaurant;
         this.context = context;
     }

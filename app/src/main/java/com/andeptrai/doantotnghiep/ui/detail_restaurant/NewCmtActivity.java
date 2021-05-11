@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.andeptrai.doantotnghiep.IP;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.model.Comment;
 import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
@@ -29,6 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static com.andeptrai.doantotnghiep.URL.urlInsertNewCmt;
+
 public class NewCmtActivity extends AppCompatActivity {
 
     ImageView icPageBack;
@@ -36,7 +37,6 @@ public class NewCmtActivity extends AppCompatActivity {
     RatingBar ratingBarNewCmt;
     EditText edtTitleCmt, edtContentCmt;
 
-    private static String urlInsertNewCmt = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/insertNewCmt.php";
 
     private float rate = 0;
 
@@ -81,7 +81,7 @@ public class NewCmtActivity extends AppCompatActivity {
             Random rand = new Random();
             String idCmt = new RandomString(250, rand).nextString();
             Comment newCmt = new Comment(idCmt, InfoUserCurr.currentId, InfoUserCurr.currentName, "res1"
-                    , contentFull, 0, 0, 0, null, false, rate);
+                    , contentFull, 0, 0, 0, null, "", false, rate);
             newCmt.setIdRestaurant(Id_restaurant);
             insertToDB(newCmt);
 

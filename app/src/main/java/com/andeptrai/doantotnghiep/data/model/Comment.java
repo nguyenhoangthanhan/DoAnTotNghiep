@@ -29,7 +29,8 @@ public class Comment  implements Serializable {
     }
 
     public Comment(String idComt, int idUser, String nameCmter, String idRestaurant
-            , String content, int likeNumber, int cmtNumber, int shareNumber, String time_create_cmt, boolean likeIt, double pointReview) {
+            , String content, int likeNumber, int cmtNumber, int shareNumber, String time_create_cmt,
+                   String listLike, boolean likeIt, double pointReview) {
         this.idComt = idComt;
         this.idUser = idUser;
         this.nameCmter = nameCmter;
@@ -39,6 +40,7 @@ public class Comment  implements Serializable {
         this.cmtNumber = cmtNumber;
         this.shareNumber = shareNumber;
         this.time_create_cmt = time_create_cmt;
+        this.listLike = listLike;
         this.likeIt = likeIt;
         this.pointReview = pointReview;
     }

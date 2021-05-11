@@ -28,6 +28,8 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Bundle bundle;
     private ArrayList<InfoRestaurant> infoRestaurantArrayList;
 
     RestaurantAdapter restaurantAdapter;
@@ -36,9 +38,16 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     ImageView icon_go_home, icon_go_list_restaurant, icon_go_user;
 
-    public HomeFragment(ArrayList<InfoRestaurant> replyCmtArrayList) {
-        this.infoRestaurantArrayList = replyCmtArrayList;
+    public HomeFragment() {
     }
+
+//    public static HomeFragment newInstance(ArrayList<InfoRestaurant> replyCmtArrayList){
+//        Bundle args = new Bundle();
+//        args.putSerializable("replyCmtArrayLst",  replyCmtArrayList);
+//        HomeFragment homeFragment = new HomeFragment();
+//        homeFragment.setArguments(args);
+//        return homeFragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        bundle = this.getArguments();
+        infoRestaurantArrayList = (ArrayList<InfoRestaurant>) bundle.getSerializable("infoRestaurantArrayList");
+
         recyclerView = view.findViewById(R.id.list_restaurant);
         restaurantAdapter = new RestaurantAdapter(infoRestaurantArrayList, getContext());
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -63,4 +75,5 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
 }

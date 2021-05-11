@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.andeptrai.doantotnghiep.IP;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.ui.main.MainActivity;
@@ -23,9 +22,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.andeptrai.doantotnghiep.URL.urlCheckUser;
+import static com.andeptrai.doantotnghiep.URL.urlSignUp;
 import static com.andeptrai.doantotnghiep.library_code.CheckInfoSignUp.checkPass;
 import static com.andeptrai.doantotnghiep.library_code.CheckInfoSignUp.checkRePass;
 import static com.andeptrai.doantotnghiep.library_code.CheckInfoSignUp.inputYet;
@@ -36,8 +40,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText edtUsernameSign, edtPasswordSign, edtPhoneSign, edtNameSign, edtEmailSign, edtAddressSign, edtRePasswordSign;
     Button btnSignUp;
     TextView txtShowError;
-
-    private static String urlSignUp = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/signUpAPI.php";
 
 
     @Override
@@ -102,10 +104,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onResponse(String response) {
                         if (response.trim().equals("Register success")){
                             Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            InfoUserCurr.currentUsername = usernameNew;
-                            InfoUserCurr.currentPwd = passwordNew;
-                            startActivity(intent);
+//                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+//                            InfoUserCurr.currentId = -1;
+//                            InfoUserCurr.currentUsername = usernameNew;
+//                            InfoUserCurr.currentPwd = passwordNew;
+//                            InfoUserCurr.currentPhone = phoneNew;
+//                            InfoUserCurr.currentEmail = emailNew;
+//                            InfoUserCurr.currentName = nameNew;
+//                            InfoUserCurr.currentAddress = addressNew;
+//                            startActivity(intent);
+
+                            ReadJSON(usernameNew, passwordNew);
                         }
                         else if(response.trim().equals("Error when insert into Database")){
                             txtShowError.setText("Lỗi khi thêm dữ liệu vào database");
@@ -141,4 +150,65 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         };
         requestQueue.add(stringRequest);
     }
+
+
+    private void ReadJSON(final String username, final String password){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlCheckUser
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (!response.trim().equals("Login fail")){
+
+                    try {
+                        JSONObject jObject = new JSONObject(response);
+                        InfoUserCurr.currentId = jObject.getInt("Id_customer");
+                        InfoUserCurr.currentUsername = jObject.getString("Username");
+                        InfoUserCurr.currentPhone = jObject.getString("Phone");
+                        InfoUserCurr.currentPwd = jObject.getString("Password");
+                        InfoUserCurr.currentEmail = jObject.getString("Email");
+                        InfoUserCurr.currentName = jObject.getString("Name");
+                        InfoUserCurr.currentAddress = jObject.getString("Address");
+                        Toast.makeText(RegisterActivity.this, "Register success! - " + InfoUserCurr.currentId +
+                                "+" + InfoUserCurr.currentUsername +
+                                "+" + InfoUserCurr.currentPhone +
+                                "+" + InfoUserCurr.currentPwd +
+                                "+" + InfoUserCurr.currentEmail +
+                                "+" + InfoUserCurr.currentName +
+                                "+" + InfoUserCurr.currentAddress, Toast.LENGTH_LONG).show();
+
+//                        Toast.makeText(LoginActivity.this, "Login thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } catch (JSONException e) {
+
+                        Toast.makeText(RegisterActivity.this, "Loi! -- " + e.toString(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    Toast.makeText(RegisterActivity.this, "Register fail!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RegisterActivity.this, "Register fail!---"+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("usernameClient", username);
+                params.put("passwordClient", password);
+
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+
 }
