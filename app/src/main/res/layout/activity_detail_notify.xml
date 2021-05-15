@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.notify.DetailNotifyActivity"
+    android:padding="@dimen/_5sdp">
+
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="@dimen/_17sdp"
+        android:textColor="@color/black"
+        android:id="@+id/txtTittleDetailNotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="Khuyến mãi hot mùa dịch Covi 19" />
+
+    <TextView
+        android:textSize="14sp"
+        android:layout_below="@id/txtTittleNotify"
+        android:textColor="@color/colorGray444"
+        android:id="@+id/txtContentDetailNotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giảm 15% các mặt hàng điện tử, giảm 5% sản phẩm camera probest 7.4XT, tặng tai nghe khi mua điện thoại Samsung galaxy S9" />
+
+</LinearLayout>

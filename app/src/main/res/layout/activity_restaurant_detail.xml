@@ -30,6 +30,17 @@
         android:text="PoLLy - Gà rán Nhật Bản" />
 
         <TextView
+            android:textSize="@dimen/_7sdp"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/orange003"
+            android:layout_below="@id/img_tittle"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/txtPromotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khuyến mãi" />
+
+        <TextView
             android:layout_marginStart="@dimen/_5sdp"
             android:textColor="@color/colorGray222"
             android:textStyle="normal"
@@ -75,7 +86,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:textColor="@color/colorGray999"
+                android:textColor="@color/colorGray888"
                 android:text="Bình luận"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -102,10 +113,34 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:textColor="@color/colorGray999"
+                android:textColor="@color/colorGray888"
                 android:text="Đánh giá"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="@dimen/_5sdp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:id="@+id/viewCare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_heart_care_de_ac"
+                android:src="@drawable/ic_heart_care"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp" />
+
+            <TextView
+                android:id="@+id/txtResCare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quan tâm"
+                android:textColor="@color/colorGray888" />
 
         </LinearLayout>
 
@@ -217,11 +252,47 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"/>
 
-    <LinearLayout
+
+<!--        <com.google.android.gms.maps.MapView-->
+<!--            android:layout_below="@id/line1dp_3"-->
+<!--            android:id="@+id/mapView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <fragment-->
+<!--            android:id="@+id/fm_map"-->
+<!--            android:layout_below="@id/mapView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/colorGray333"
+            android:layout_below="@id/line1dp_3"
+            android:id="@+id/txtTittleFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Món ăn" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/ViewRVFood"
+            android:layout_below="@id/txtTittleFood"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFoodResCurr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
         android:id="@+id/cmt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line1dp_3"
+        android:layout_below="@id/ViewRVFood"
         android:orientation="vertical">
 
         <TextView

@@ -17,4 +17,13 @@ public class URL {
     public static String urlGetCmtReviewPointNumber = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getCmtReviewPointNumber.php";
     public static String urlUpdateLikeAndUnlikeReply = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/updateLikeAndUnlikeReply.php";
     public static String urlDeleteReplyCmtById = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/deleteReplyCmtById.php";
+
+    //get notify
+    public static String urlGetNotificationByListIdRes = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getNotificationByListIdRes.php";
+
+    //care restaurant
+    public static String urlUpdateCareAndDontCare = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/updateCareAndDontCare.php";
+
+    //get all notify by id restaurant
+    public static String urlGetAllNotifyByIdRes = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllNotifyByIdRes.php";
 }

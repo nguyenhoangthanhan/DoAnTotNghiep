@@ -96,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                         InfoUserCurr.currentEmail = jObject.getString("Email");
                         InfoUserCurr.currentName = jObject.getString("Name");
                         InfoUserCurr.currentAddress = jObject.getString("Address");
+                        InfoUserCurr.list_care_res = jObject.getString("List_care_res");
                         Toast.makeText(LoginActivity.this, "Login success! - " + InfoUserCurr.currentId +
                                 "+" + InfoUserCurr.currentUsername +
                                 "+" + InfoUserCurr.currentPhone +

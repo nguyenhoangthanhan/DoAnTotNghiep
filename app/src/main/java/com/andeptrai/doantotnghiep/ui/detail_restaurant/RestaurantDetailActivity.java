@@ -16,13 +16,18 @@ import com.andeptrai.doantotnghiep.CODE;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.CmtAdapter;
 import com.andeptrai.doantotnghiep.data.model.Comment;
+import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.interf.InterfCmt;
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,22 +40,32 @@ import java.util.Map;
 import static com.andeptrai.doantotnghiep.URL.urlDeleteCmtById;
 import static com.andeptrai.doantotnghiep.URL.urlGetAllCmtByIdRes;
 import static com.andeptrai.doantotnghiep.URL.urlGetCmtReviewPointNumber;
+import static com.andeptrai.doantotnghiep.URL.urlUpdateCareAndDontCare;
 
-public class RestaurantDetailActivity extends AppCompatActivity implements InterfCmt {
+public class RestaurantDetailActivity extends AppCompatActivity implements InterfCmt, View.OnClickListener {
 
-    ImageView ic_add_cmt;
-    TextView txtAddCmt, txtTittle, txtReviewPoint, txtAddressRes, txtReviewNumber, txtCmtNumber, txtCmtNumber2;
+    ImageView ic_add_cmt, img_heart_care;
+    TextView txtAddCmt, txtTittle, txtReviewPoint, txtAddressRes, txtReviewNumber, txtCmtNumber, txtCmtNumber2, txtResCare, txtPromotion;
+    MapView mapView;
 
     RecyclerView recycleViewCmt;
     CmtAdapter cmtAdapter;
     ArrayList<Comment> commentArrayList;
 
-
-
     public static int positionOpenReplyCmt = -1;
     public static int cmtNumber = -1;
     public static int rwNumber = -1;
     public static String idResCurr = null;
+
+
+
+    private final LatLng PERTH = new LatLng(-31.952854, 115.857342);
+    private final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
+    private final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
+
+    private Marker markerPerth;
+    private Marker markerSydney;
+    private Marker markerBrisbane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,27 +84,124 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
         txtReviewNumber = findViewById(R.id.txtReviewNumber);
         txtCmtNumber = findViewById(R.id.txtCmtNumber);
         txtCmtNumber2 = findViewById(R.id.txtCmtNumber2);
+        img_heart_care = findViewById(R.id.img_heart_care_de_ac);
+        img_heart_care.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setCareAndNoCare();
+            }
+        });
+        txtResCare = findViewById(R.id.txtResCare);
+        txtResCare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setCareAndNoCare();
+            }
+        });
+
+        txtPromotion = findViewById(R.id.txtPromotion);
+        txtPromotion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RestaurantDetailActivity.this, PromotionNotifyResActivity.class);
+                intent.putExtra("idResCurr", idResCurr);
+                startActivity(intent);
+            }
+        });
 
         setInfoResCurr();
 
+//        mapView = findViewById(R.id.mapView);
+
+        //list comment
         recycleViewCmt = findViewById(R.id.recycleViewCmt);
         commentArrayList = new ArrayList<>();
-//        for (int i = 0; i < 10; i++){
-//            commentArrayList.add(new Comment("Thanh Thien", "Rat ngon"
-//                    , 20, 10, 5, true, 4.2));
-//        }
-//        for (int i = 0; i < 10; i++){
-//            commentArrayList.add(new Comment("Thanh Thien", "Rat ngon"
-//                    , 10, 12, 1, false, 3.2));
-//        }
-//        commentArrayList.get(0).setIdUser(8);
-//        commentArrayList.get(1).setIdUser(1);
-
         cmtAdapter = new CmtAdapter(commentArrayList, this, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recycleViewCmt.setAdapter(cmtAdapter);
         recycleViewCmt.setLayoutManager(linearLayoutManager);
+
+
+        //list food
+
     }
+
+    private void setCareAndNoCare() {
+        if (!InfoUserCurr.list_care_res.equals("")){
+            String list_care_res_curr_user = InfoUserCurr.list_care_res;
+            String id_res_loop = "";
+            boolean checkCare = true;
+            for (int i = 0; i < list_care_res_curr_user.length(); i++){
+                if(list_care_res_curr_user.charAt(i) != ','){
+                    id_res_loop += list_care_res_curr_user.charAt(i);
+                    if (i == list_care_res_curr_user.length()-1){
+                        if (id_res_loop.equals(idResCurr)){
+                            img_heart_care.setImageResource(R.drawable.ic_heart_care);
+                            InfoUserCurr.list_care_res = InfoUserCurr.list_care_res.replace(","+idResCurr, "");
+                            updateCareAndDontCare();
+                            checkCare = false;
+                            break;
+                        }
+                    }
+                }
+                else{
+                    if (id_res_loop.equals(idResCurr)){
+                        img_heart_care.setImageResource(R.drawable.ic_heart_care);
+                        InfoUserCurr.list_care_res = InfoUserCurr.list_care_res.replace(","+idResCurr, "");
+                        updateCareAndDontCare();
+                        checkCare = false;
+                        break;
+                    }
+                    id_res_loop = "";
+                }
+            }
+            if (checkCare){
+                img_heart_care.setImageResource(R.drawable.ic_heart_care_2_1);
+                InfoUserCurr.list_care_res += "," + idResCurr;
+                updateCareAndDontCare();
+            }
+        }
+        else{
+            img_heart_care.setImageResource(R.drawable.ic_heart_care_2_1);
+            InfoUserCurr.list_care_res += "," + idResCurr;
+            updateCareAndDontCare();
+        }
+    }
+
+    private void updateCareAndDontCare() {
+        RequestQueue requestQueue = Volley.newRequestQueue(RestaurantDetailActivity.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlUpdateCareAndDontCare,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("Care success")){
+                            Toast.makeText(RestaurantDetailActivity.this, "Care success!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(RestaurantDetailActivity.this, "Care fail - " + response.trim(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(RestaurantDetailActivity.this, "Error care!"+error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("idUser", InfoUserCurr.currentId + "");
+                params.put("listCareResNew", InfoUserCurr.list_care_res);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
     private View.OnClickListener addNewCmtListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -133,9 +245,31 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
 
 
     private void setInfoResCurr() {
+
         Intent intent = getIntent();
         final String Id_restaurant = intent.getStringExtra("Id_restaurant");
         idResCurr = Id_restaurant;
+        if (!InfoUserCurr.list_care_res.equals("")){
+            String list_care_res_curr_user = InfoUserCurr.list_care_res;
+            String id_res_loop = "";
+            for (int i = 0; i < list_care_res_curr_user.length(); i++){
+                if(list_care_res_curr_user.charAt(i) != ','){
+                    id_res_loop += list_care_res_curr_user.charAt(i);
+                    if (i == list_care_res_curr_user.length()-1){
+                        if (id_res_loop.equals(Id_restaurant)){
+                            img_heart_care.setImageResource(R.drawable.ic_heart_care_2_1);
+                        }
+                    }
+                }
+                else{
+                    if (id_res_loop.equals(Id_restaurant)){
+                        img_heart_care.setImageResource(R.drawable.ic_heart_care_2_1);
+                        break;
+                    }
+                    id_res_loop = "";
+                }
+            }
+        }
         getCmtReviewNumber(Id_restaurant);
         final String Name_restaurant = intent.getStringExtra("Name_restaurant");
         txtTittle.setText(Name_restaurant);
@@ -329,5 +463,20 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.txtResCare){
+            careThisRestaurant();
+        }
+        if (view.getId() == R.id.img_heart_care_de_ac){
+            careThisRestaurant();
+        }
+
+    }
+
+    private void careThisRestaurant() {
+
     }
 }

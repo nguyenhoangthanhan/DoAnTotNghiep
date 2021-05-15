@@ -463,7 +463,6 @@ public class ReplyCmtActivity extends AppCompatActivity implements EditInterf {
                 int k;
                 for (k = j + 1; k < listIdLike.length(); k++){
                     if (listIdLike.charAt(k) >= '0' &&  listIdLike.charAt(k) <= '9') {
-                        k++;
                     }
                     else break;
                 }

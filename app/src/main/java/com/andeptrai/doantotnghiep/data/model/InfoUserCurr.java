@@ -11,4 +11,5 @@ public class InfoUserCurr implements Serializable {
     public static String currentEmail = "abc@abc.com";
     public static String currentName = "Nguyen Van A";
     public static String currentAddress = "so 1 hoang cau, hoan kiem, ha noi";
+    public static String list_care_res = "";
 }

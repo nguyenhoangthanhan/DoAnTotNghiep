@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -13,8 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.RestaurantAdapter;
 import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
+import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.andeptrai.doantotnghiep.URL.urlGetNotificationByListIdRes;
 
 public class HomeFragment extends Fragment {
 
@@ -74,6 +86,39 @@ public class HomeFragment extends Fragment {
         restaurantAdapter.notifyDataSetChanged();
 
         return view;
+    }
+
+
+    private void getNotify() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlGetNotificationByListIdRes
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (!response.trim().equals("Get notify fail") && !response.trim().equals("error get data!")){
+
+                }
+                else{
+                    Toast.makeText(getContext(), "Get notify fail!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Get notify res error!---"+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("listCareRestaurant", InfoUserCurr.list_care_res);
+
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
 }

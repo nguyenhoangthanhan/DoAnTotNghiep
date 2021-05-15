@@ -80,7 +80,6 @@ public class CmtAdapter extends RecyclerView.Adapter {
                 int k;
                 for (k = j + 1; k < listIdLike.length(); k++){
                     if (listIdLike.charAt(k) >= '0' &&  listIdLike.charAt(k) <= '9') {
-                        k++;
                     }
                     else break;
                 }
