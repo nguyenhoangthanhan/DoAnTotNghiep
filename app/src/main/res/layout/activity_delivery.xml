@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.delivery.DeliveryActivity">
+
+
+    <LinearLayout
+        android:id="@+id/viewBackCmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange001"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp">
+
+        <ImageView
+            android:id="@+id/icPageBackDelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:text="Đặt món ăn" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_above="@id/viewFooterDelivery"
+        android:id="@+id/viewContentDelivery"
+        android:layout_below="@id/viewBackCmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/viewInfoResDelivery"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameRestaurantDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:text="PoLLy - Gà rán Nhật Bản"
+                android:textColor="@color/colorGray222"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/addressResDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:text="so 1 hoang cau, dich vong, cau giay, ha noi"
+                android:textColor="@color/colorGray222"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/line1dp_"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@id/viewInfoResDelivery"
+            android:background="@color/colorGrayaaa" />
+
+        <TextView
+            android:layout_below="@id/line1dp_"
+            android:id="@+id/txtDeliveryActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_delivery"
+            android:enabled="true"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/delivery"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/line1dp_2"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@id/txtDeliveryActivity"
+            android:background="@color/colorGrayaaa" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFoodDelivery"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_below="@id/line1dp_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/viewFooterDelivery"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/colorGray444"
+            android:padding="@dimen/_6sdp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgAvtDeliveryNumber"
+                    android:src="@drawable/ic_fast_food"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"/>
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="6sp"
+                    android:layout_marginStart="-6sp"
+                    android:background="@drawable/bg_circle_delivery_number"
+                    android:layout_toEndOf="@id/imgAvtDeliveryNumber"
+                    android:id="@+id/txtNumberDelivery"
+                    android:textSize="@dimen/_8sdp"
+                    android:text="3"
+                    android:gravity="center"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:textColor="@color/orange003"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="155,000đ"
+                android:id="@+id/txtTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/viewDeliveryAction"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/orange003"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_6sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delivery"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

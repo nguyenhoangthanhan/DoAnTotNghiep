@@ -52,6 +52,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, RestaurantDetailActivity.class);
+                intent.putExtra("infoCurrentRestaurant", infoRestaurant);
                 intent.putExtra("Id_restaurant", infoRestaurant.getId_restaurant());;
                 intent.putExtra("Name_restaurant", infoRestaurant.getName_restaurant());;
                 intent.putExtra("Phone_restaurant", infoRestaurant.getPhone_restaurant());;

@@ -245,12 +245,55 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/line1dp_3"
-        android:layout_below="@id/viewOpenTime_Contact"
-        android:background="@color/colorGrayaaa"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"/>
+        <TextView
+            android:id="@+id/line1dp_3"
+            android:layout_below="@id/viewOpenTime_Contact"
+            android:background="@color/colorGrayaaa"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
+
+        <LinearLayout
+            android:layout_below="@id/line1dp_3"
+            android:id="@+id/viewDeliveryReservation"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:enabled="true"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:id="@+id/txtReservation"
+                android:background="@drawable/bg_reservation"
+                android:text="@string/reservation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:enabled="false"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:id="@+id/txtDelivery"
+                android:text="@string/delivery"
+                android:background="@drawable/bg_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:clickable="false"
+            android:id="@+id/line1dp_3_1"
+            android:layout_below="@id/viewDeliveryReservation"
+            android:background="@color/colorGrayaaa"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
 
 
 <!--        <com.google.android.gms.maps.MapView-->
@@ -266,15 +309,18 @@
 <!--            android:layout_height="wrap_content"/>-->
 
         <TextView
+            android:paddingStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:textStyle="bold"
             android:textColor="@color/colorGray333"
-            android:layout_below="@id/line1dp_3"
+            android:layout_below="@id/line1dp_3_1"
             android:id="@+id/txtTittleFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Món ăn" />
 
         <androidx.core.widget.NestedScrollView
+            android:paddingBottom="@dimen/_20sdp"
             android:id="@+id/ViewRVFood"
             android:layout_below="@id/txtTittleFood"
             android:layout_width="match_parent"

@@ -5,56 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity"><!-- Header aligned to top -->
+    <!-- Footer aligned to bottom -->
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@color/orange002"
-        android:gravity="center" >
+        android:gravity="center">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/_9sdp"
             android:background="@drawable/search_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginStart="@dimen/_7sdp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/search"
                 android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"/>
+                android:layout_height="@dimen/_24sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:src="@drawable/search" />
 
             <EditText
-                android:background="@color/zxing_transparent"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/zxing_transparent"
                 android:textColor="@color/colorGrayaaa"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
-                android:layout_marginStart="@dimen/_7sdp"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorGrayaaa"
-                android:layout_gravity="center_vertical"
-                android:text="@string/HaNoi"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:text="@string/HaNoi"
+                android:textColor="@color/colorGrayaaa"
+                android:textSize="@dimen/_12sdp" />
 
             <ImageView
-                android:layout_margin="@dimen/_8sdp"
-                android:layout_gravity="center_vertical|end"
-                android:src="@drawable/ic_down_filled_triangular_arrow"
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_10sdp"/>
+                android:layout_height="@dimen/_10sdp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="@dimen/_8sdp"
+                android:src="@drawable/ic_down_filled_triangular_arrow" />
 
         </LinearLayout>
     </RelativeLayout>
-    <!-- Footer aligned to bottom -->
+
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"

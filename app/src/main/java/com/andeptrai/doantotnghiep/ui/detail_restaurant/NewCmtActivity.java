@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static com.andeptrai.doantotnghiep.CODE.CREATE_CMT_NEW;
 import static com.andeptrai.doantotnghiep.URL.urlInsertNewCmt;
 
 public class NewCmtActivity extends AppCompatActivity {
@@ -79,7 +80,7 @@ public class NewCmtActivity extends AppCompatActivity {
             String contentFull = title + "\n" + content;
 
             Random rand = new Random();
-            String idCmt = new RandomString(250, rand).nextString();
+            String idCmt = new RandomString(CREATE_CMT_NEW, rand).nextString();
             Comment newCmt = new Comment(idCmt, InfoUserCurr.currentId, InfoUserCurr.currentName, "res1"
                     , contentFull, 0, 0, 0, null, "", false, rate);
             newCmt.setIdRestaurant(Id_restaurant);

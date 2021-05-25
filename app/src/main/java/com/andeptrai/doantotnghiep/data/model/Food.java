@@ -1,6 +1,8 @@
 package com.andeptrai.doantotnghiep.data.model;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     private String id_restaurant;
     private String id_food;
     private String name_food;

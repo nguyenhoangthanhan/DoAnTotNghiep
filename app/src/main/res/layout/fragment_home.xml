@@ -46,7 +46,7 @@
                     <ImageView
                         android:padding="@dimen/_10sdp"
                         android:background="@color/foody_delivery"
-                        android:src="@drawable/ic_reservation"
+                        android:src="@drawable/ic_serving_dish"
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="@dimen/_70sdp"/>
 

@@ -1,6 +1,8 @@
 package com.andeptrai.doantotnghiep.data.model;
 
-public class ReplyCmt {
+import java.io.Serializable;
+
+public class ReplyCmt implements Serializable {
 
     private String id_reply_cmt;
     private String id_cmt;

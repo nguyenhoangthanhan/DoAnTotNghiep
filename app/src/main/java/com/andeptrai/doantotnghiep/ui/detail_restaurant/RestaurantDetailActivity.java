@@ -15,9 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andeptrai.doantotnghiep.CODE;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.CmtAdapter;
+import com.andeptrai.doantotnghiep.data.adapter.FoodAdapter;
 import com.andeptrai.doantotnghiep.data.model.Comment;
+import com.andeptrai.doantotnghiep.data.model.Food;
+import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
 import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.interf.InterfCmt;
+import com.andeptrai.doantotnghiep.ui.delivery.DeliveryActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,18 +43,24 @@ import java.util.Map;
 
 import static com.andeptrai.doantotnghiep.URL.urlDeleteCmtById;
 import static com.andeptrai.doantotnghiep.URL.urlGetAllCmtByIdRes;
+import static com.andeptrai.doantotnghiep.URL.urlGetAllFoodByIdRes;
 import static com.andeptrai.doantotnghiep.URL.urlGetCmtReviewPointNumber;
 import static com.andeptrai.doantotnghiep.URL.urlUpdateCareAndDontCare;
 
 public class RestaurantDetailActivity extends AppCompatActivity implements InterfCmt, View.OnClickListener {
 
     ImageView ic_add_cmt, img_heart_care;
-    TextView txtAddCmt, txtTittle, txtReviewPoint, txtAddressRes, txtReviewNumber, txtCmtNumber, txtCmtNumber2, txtResCare, txtPromotion;
+    TextView txtAddCmt, txtTittle, txtReviewPoint, txtAddressRes, txtReviewNumber, txtCmtNumber
+            , txtCmtNumber2, txtResCare, txtPromotion, txtReservation, txtDelivery;
     MapView mapView;
 
     RecyclerView recycleViewCmt;
     CmtAdapter cmtAdapter;
-    ArrayList<Comment> commentArrayList;
+    ArrayList<Comment> commentArrayList = new ArrayList<>();
+
+    RecyclerView rvFoodResCurr;
+    FoodAdapter foodAdapter;
+    ArrayList<Food> foodArrayList = new ArrayList<>();
 
     public static int positionOpenReplyCmt = -1;
     public static int cmtNumber = -1;
@@ -67,10 +77,14 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
     private Marker markerSydney;
     private Marker markerBrisbane;
 
+    InfoRestaurant currentInfoRestaurant;;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
+
+        currentInfoRestaurant = (InfoRestaurant) getIntent().getSerializableExtra("infoCurrentRestaurant");
 
         ic_add_cmt = findViewById(R.id.ic_add_cmt);
         ic_add_cmt.setOnClickListener(addNewCmtListener);
@@ -84,20 +98,29 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
         txtReviewNumber = findViewById(R.id.txtReviewNumber);
         txtCmtNumber = findViewById(R.id.txtCmtNumber);
         txtCmtNumber2 = findViewById(R.id.txtCmtNumber2);
+
+        //set information this restaurant
+        Intent intent = getIntent();
+        final String Id_restaurant = intent.getStringExtra("Id_restaurant");
+        idResCurr = currentInfoRestaurant.getId_restaurant();
+        final String Name_restaurant = intent.getStringExtra("Name_restaurant");
+        txtTittle.setText(currentInfoRestaurant.getName_restaurant());
+        final String Phone_restaurant = intent.getStringExtra("Phone_restaurant");
+        final String Password = intent.getStringExtra("Password");
+        final String Address_restaurant = intent.getStringExtra("Address_restaurant");
+        txtAddressRes.setText(currentInfoRestaurant.getAddress_restaurant());
+        final String Review_point = intent.getStringExtra("Review_point");
+        txtReviewPoint.setText(currentInfoRestaurant.getReview_point()+"");
+        final String Status_restaurant = intent.getStringExtra("Status_restaurant");
+        final String Short_description = intent.getStringExtra("Short_description");
+        final String Promotion = intent.getStringExtra("Promotion");
+        //end set information this restaurant
+
+
         img_heart_care = findViewById(R.id.img_heart_care_de_ac);
-        img_heart_care.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setCareAndNoCare();
-            }
-        });
+        img_heart_care.setOnClickListener(this);
         txtResCare = findViewById(R.id.txtResCare);
-        txtResCare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setCareAndNoCare();
-            }
-        });
+        txtResCare.setOnClickListener(this);
 
         txtPromotion = findViewById(R.id.txtPromotion);
         txtPromotion.setOnClickListener(new View.OnClickListener() {
@@ -115,15 +138,90 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
 
         //list comment
         recycleViewCmt = findViewById(R.id.recycleViewCmt);
-        commentArrayList = new ArrayList<>();
         cmtAdapter = new CmtAdapter(commentArrayList, this, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recycleViewCmt.setAdapter(cmtAdapter);
         recycleViewCmt.setLayoutManager(linearLayoutManager);
 
 
-        //list food
+//        list food
+        rvFoodResCurr = findViewById(R.id.rvFoodResCurr);
+//        for (int i = 0; i < 4; i ++){
+//            foodArrayList.add(new Food("111", "111", "111", 1, 10000, 1));
+//            foodArrayList.add(new Food("222", "222", "222", 1, 20000, 1));
+//        }
+        foodAdapter = new FoodAdapter(foodArrayList, this);
+        LinearLayoutManager linearLayoutManagerFood = new LinearLayoutManager(this);
+        rvFoodResCurr.setAdapter(foodAdapter);
+        rvFoodResCurr.setLayoutManager(linearLayoutManagerFood);
+        getAllFoodByIdRes();
 
+        txtReservation = findViewById(R.id.txtReservation);
+        txtDelivery = findViewById(R.id.txtDelivery);
+        if (currentInfoRestaurant.getStatus_restaurant() == 1){
+            txtReservation.setEnabled(true);
+            txtDelivery.setEnabled(false);
+        }
+        else if (currentInfoRestaurant.getStatus_restaurant() == 2){
+            txtReservation.setEnabled(false);
+            txtDelivery.setEnabled(true);
+        }
+        else{
+            txtReservation.setEnabled(true);
+            txtDelivery.setEnabled(true);
+        }
+        txtDelivery.setOnClickListener(this);
+        txtReservation.setOnClickListener(this);
+    }
+
+    private void getAllFoodByIdRes() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlGetAllFoodByIdRes
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (!response.trim().equals("Get food this restaurant fail")){
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++){
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                            foodArrayList.add(new Food(jsonObject.getString("Id_restaurant"),
+                                    jsonObject.getString("Id_food"),
+                                    jsonObject.getString("Name_food"),
+                                    jsonObject.getInt("Status"),
+                                    jsonObject.getInt("Price"),
+                                    jsonObject.getInt("Promotion")));
+                        }
+                        foodAdapter.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+
+                        Toast.makeText(RestaurantDetailActivity.this, "Get food error exception! -- " + e.toString(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    Toast.makeText(RestaurantDetailActivity.this, "Get food fail!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RestaurantDetailActivity.this, "Get all food by id res error!---"+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("idRestaurant", idResCurr);
+
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     private void setCareAndNoCare() {
@@ -245,10 +343,6 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
 
 
     private void setInfoResCurr() {
-
-        Intent intent = getIntent();
-        final String Id_restaurant = intent.getStringExtra("Id_restaurant");
-        idResCurr = Id_restaurant;
         if (!InfoUserCurr.list_care_res.equals("")){
             String list_care_res_curr_user = InfoUserCurr.list_care_res;
             String id_res_loop = "";
@@ -256,13 +350,13 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
                 if(list_care_res_curr_user.charAt(i) != ','){
                     id_res_loop += list_care_res_curr_user.charAt(i);
                     if (i == list_care_res_curr_user.length()-1){
-                        if (id_res_loop.equals(Id_restaurant)){
+                        if (id_res_loop.equals(idResCurr)){
                             img_heart_care.setImageResource(R.drawable.ic_heart_care_2_1);
                         }
                     }
                 }
                 else{
-                    if (id_res_loop.equals(Id_restaurant)){
+                    if (id_res_loop.equals(idResCurr)){
                         img_heart_care.setImageResource(R.drawable.ic_heart_care_2_1);
                         break;
                     }
@@ -270,18 +364,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
                 }
             }
         }
-        getCmtReviewNumber(Id_restaurant);
-        final String Name_restaurant = intent.getStringExtra("Name_restaurant");
-        txtTittle.setText(Name_restaurant);
-        final String Phone_restaurant = intent.getStringExtra("Phone_restaurant");
-        final String Password = intent.getStringExtra("Password");
-        final String Address_restaurant = intent.getStringExtra("Address_restaurant");
-        txtAddressRes.setText(Address_restaurant);
-        final String Review_point = intent.getStringExtra("Review_point");
-        txtReviewPoint.setText(Review_point);
-        final String Status_restaurant = intent.getStringExtra("Status_restaurant");
-        final String Short_description = intent.getStringExtra("Short_description");
-        final String Promotion = intent.getStringExtra("Promotion");
+        getCmtReviewNumber(idResCurr);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlGetAllCmtByIdRes
@@ -333,7 +416,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("idRestaurant", Id_restaurant);
+                params.put("idRestaurant", idResCurr);
 
                 return params;
             }
@@ -468,15 +551,29 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.txtResCare){
-            careThisRestaurant();
+            setCareAndNoCare();
         }
         if (view.getId() == R.id.img_heart_care_de_ac){
-            careThisRestaurant();
+            setCareAndNoCare();
+        }
+        if (view.getId() == R.id.txtReservation){
+            reservationNow();
+        }
+        if (view.getId() == R.id.txtDelivery){
+            deliveryNow();
         }
 
     }
 
-    private void careThisRestaurant() {
+    private void deliveryNow() {
+        Intent intent = new Intent(RestaurantDetailActivity.this, DeliveryActivity.class);
+        intent.putExtra("currentInfoRestaurant", currentInfoRestaurant);
+        intent.putExtra("foodArrayList", foodArrayList);
+        startActivity(intent);
+    }
+
+    private void reservationNow() {
 
     }
+
 }

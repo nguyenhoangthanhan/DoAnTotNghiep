@@ -1,59 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/_8sdp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_margin="@dimen/_3sdp"
-        android:id="@+id/imageView2"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:src="@drawable/ic_diet" />
+    <RelativeLayout
+        android:id="@+id/viewItemFood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_margin="@dimen/_3sdp"
+            android:id="@+id/imgAvtFood"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/ic_diet" />
+
+        <TextView
+            android:layout_margin="@dimen/_3sdp"
+            android:layout_toEndOf="@id/imgAvtFood"
+            android:id="@+id/txtNameFood"
+            android:textColor="@color/colorGray222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sườn nướng" />
+
+        <TextView
+            android:textColor="@color/colorGray666"
+            android:layout_margin="@dimen/_3sdp"
+            android:layout_toEndOf="@id/imgAvtFood"
+            android:layout_below="@id/txtNameFood"
+            android:id="@+id/txtPriceFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="170.000đ" />
+
+
+
+        <TextView
+            android:id="@+id/txtAvailable"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_co_san"
+            android:textColor="@color/green_4caf50"
+            android:padding="@dimen/_5sdp"
+            android:layout_alignParentEnd="true"
+            android:text="Có sẵn"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:visibility="visible"
+            android:id="@+id/txtUnavailable"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bg_het_mon"
+            android:textColor="@color/red_050"
+            android:padding="@dimen/_5sdp"
+            android:layout_alignParentEnd="true"
+            android:text="Hết món"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
 
     <TextView
-        android:layout_margin="@dimen/_3sdp"
-        android:layout_toEndOf="@id/imageView2"
-        android:id="@+id/txtNameFood"
-        android:textColor="@color/colorGray222"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sườn nướng" />
+        android:id="@+id/line1dp_5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@id/viewItemFood"
+        android:background="@color/colorGrayaaa" />
 
-    <TextView
-        android:textColor="@color/colorGray666"
-        android:layout_margin="@dimen/_3sdp"
-        android:layout_toEndOf="@id/imageView2"
-        android:layout_below="@id/txtNameFood"
-        android:id="@+id/txtPriceFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="170.000đ" />
-
-
-
-    <TextView
-        android:id="@+id/txtAvailable"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="@drawable/bg_co_san"
-        android:textColor="@color/green_4caf50"
-        android:padding="@dimen/_5sdp"
-        android:layout_alignParentEnd="true"
-        android:text="Có sẵn"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:visibility="visible"
-        android:id="@+id/txtUnavailable"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="@drawable/bg_het_mon"
-        android:textColor="@color/red_050"
-        android:padding="@dimen/_5sdp"
-        android:layout_alignParentEnd="true"
-        android:text="Hết món"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

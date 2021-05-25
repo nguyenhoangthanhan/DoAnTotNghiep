@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrayccc"
+    tools:context=".ui.reservation.ReservationActivity">
+
+
+    <LinearLayout
+        android:id="@+id/viewBackReservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange001"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp">
+
+        <ImageView
+            android:id="@+id/icPageBackReservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:text="Đặt chỗ" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewContentDelivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/viewFooterDelivery"
+        android:layout_below="@id/viewBackReservation">
+
+
+        <LinearLayout
+            android:id="@+id/viewInfoResDelivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp">
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_reservation"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"/>
+
+                <TextView
+                    android:id="@+id/nameRestaurantReservation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="PoLLy - Gà rán Nhật Bản"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_18sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_below="@id/nameRestaurantReservation"
+                    android:id="@+id/addressResReservation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="so 1 hoang cau, dich vong, cau giay, ha noi"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="normal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addressResReservation"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textStyle="bold"
+                        android:id="@+id/txtPhoneReservation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/_12sdp"
+                        android:text="0123456789"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingBottom="@dimen/_3sdp"
+                        android:background="@drawable/bg_call_reservation"
+                        android:id="@+id/txtCallPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gọi"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:text="Thông tin đặt chỗ"
+                android:textColor="@color/colorGray222"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="normal" />
+
+            <TableLayout
+                android:stretchColumns="1"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textSize="@dimen/_12sdp"
+                        android:textColor="@color/blue2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtDateGoRestaurant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25/5/2021" />
+
+                    <TextView
+                        android:textColor="@color/colorGray333"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtChangDateGo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thay đổi" />
+                </TableRow>
+
+                <TextView
+                    android:background="@color/colorGraybbb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp" />
+
+                <TableRow
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textColor="@color/blue2"
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thời gian" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtTimeGo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15:25:00" />
+
+                    <TextView
+                        android:textColor="@color/colorGray333"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtChangeTimeGo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thay đổi" />
+                </TableRow>
+
+                <TextView
+                    android:background="@color/colorGraybbb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="5dp" />
+
+                <TableRow
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textColor="@color/blue2"
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Người lớn" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtNumberAdults"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:textColor="@color/colorGray333"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtChangeNumberAdults"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thay đổi" />
+                </TableRow>
+
+                <TextView
+                    android:background="@color/colorGraybbb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp" />
+
+                <TableRow
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textColor="@color/blue2"
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trẻ em" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtNumberChildren"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                    <TextView
+                        android:textColor="@color/colorGray333"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/txtChangeNumberChildren"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thay đổi" />
+                </TableRow>
+            </TableLayout>
+
+
+            <TextView
+                android:id="@+id/txtNoteReservation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/white"
+                android:hint="@string/notes"
+                android:lines="3"
+                android:paddingStart="@dimen/_5sdp"
+                android:textColor="@color/colorGray333"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/viewFooterDelivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textSize="@dimen/_12sdp"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_blue2_radius10dp"
+            android:id="@+id/txtContinues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Continues" />
+    </LinearLayout>
+</RelativeLayout>

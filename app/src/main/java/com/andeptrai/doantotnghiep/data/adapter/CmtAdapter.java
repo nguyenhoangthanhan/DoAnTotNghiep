@@ -89,7 +89,8 @@ public class CmtAdapter extends RecyclerView.Adapter {
         comment.setLikeNumber(likeNumber);
 
         cmtViewHolder.txtLikeCmtNumber
-                .setText(comment.getLikeNumber() + " Thích - " + comment.getCmtNumber() + " Trả lời - " + comment.getShareNumber() + " Chia sẻ");
+                .setText(comment.getLikeNumber() + " Thích - " + comment.getCmtNumber() + " Trả lời - "
+                        + comment.getShareNumber() + " Chia sẻ");
 
         //check like it
         int checkId = 0;

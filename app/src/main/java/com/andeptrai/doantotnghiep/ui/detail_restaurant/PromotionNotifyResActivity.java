@@ -57,7 +57,7 @@ public class PromotionNotifyResActivity extends AppCompatActivity {
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (!response.trim().equals("Get notify fail")){
+                if (!response.trim().equals("Get notify this restaurant fail")){
                     try {
                         JSONArray jsonArray = new JSONArray(response);
                         for (int i = 0; i < jsonArray.length(); i++){

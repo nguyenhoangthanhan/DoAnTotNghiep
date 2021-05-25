@@ -26,4 +26,10 @@ public class URL {
 
     //get all notify by id restaurant
     public static String urlGetAllNotifyByIdRes = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllNotifyByIdRes.php";
+
+    //get all food by id restaurant
+    public static String urlGetAllFoodByIdRes = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllFoodByIdRes.php";
+
+    //get all food by id restaurant
+    public static String urlCreateNewBillDelivery = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/createNewBillDelivery.php";
 }
