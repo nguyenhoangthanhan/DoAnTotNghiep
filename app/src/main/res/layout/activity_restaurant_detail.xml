@@ -267,7 +267,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:padding="@dimen/_5sdp"
                 android:id="@+id/txtReservation"
-                android:background="@drawable/bg_reservation"
+                android:background="@drawable/bg_reservation_code_xml"
                 android:text="@string/reservation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

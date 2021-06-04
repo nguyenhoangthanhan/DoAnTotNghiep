@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:textStyle="bold"
         android:background="@color/colorGrayeee"
         android:textSize="@dimen/_15sdp"
         android:gravity="center"
@@ -18,7 +19,9 @@
 
 
     <TextView
+        android:textStyle="italic"
         android:id="@+id/textView23"
+        android:textSize="@dimen/_13sdp"
         android:textColor="@color/colorGray222"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

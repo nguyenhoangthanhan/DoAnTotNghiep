@@ -38,8 +38,29 @@
     <string name="setting_account">Thiết lập tài khoản </string>
     <string name="info_contact">Thông tin liên hệ</string>
     <string name="confirm">Xác nhận</string>
+    <string name="list_bill">Danh sách hóa đơn</string>
+    <string name="list_bill_ordered">Danh sách hóa đơn đã đặt</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit">"Chỉnh sửa"</string>
+    <string name="accept">Xác nhận</string>
+    <string name="reject">Từ chối</string>
+    <string name="yetAccepted">Chưa xác nhận</string>
+    <string name="accepted">Đã xác nhận</string>
+    <string name="rejected">Đã từ chối</string>
+    <string name="total_money">Tổng số tiền:</string>
+    <string name="time_create_bill">Thời gian tạo đơn hàng:</string>
+    <string name="name_user_order">Tên người đặt hàng:</string>
+    <string name="name_restaurant">Tên nhà hàng:</string>
+    <string name="time_delivery_come">Thời gian giao đến:</string>
+    <string name="status_bill">Trạng thái đơn hàng:</string>
+    <string name="bill_type">Loại đơn hàng:</string>
+    <string name="address_delivery">Địa chỉ giao hàng:</string>
+    <string name="payment_method">Phương thức thanh toán:</string>
+    <string name="back">Trở lại</string>
+    <string name="accept_yet">Chưa xác nhận</string>
+    <string name="bill_delivery">Đơn giao hàng</string>
+    <string name="bill_reservation">Đơn đặt chỗ</string>
 
     <!--  API Key  -->
     <string name="map_api_key">AIzaSyAVoMkxOfbKNH0Cufu-ZnTFi1w4diUKmRY</string>

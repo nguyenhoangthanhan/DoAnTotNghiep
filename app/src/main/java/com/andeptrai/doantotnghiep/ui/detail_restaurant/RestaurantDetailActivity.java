@@ -22,6 +22,7 @@ import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
 import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.interf.InterfCmt;
 import com.andeptrai.doantotnghiep.ui.delivery.DeliveryActivity;
+import com.andeptrai.doantotnghiep.ui.reservation.ReservationActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -573,7 +574,9 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Inter
     }
 
     private void reservationNow() {
-
+        Intent intent = new Intent(RestaurantDetailActivity.this, ReservationActivity.class);
+        intent.putExtra("currentInfoRestaurant", currentInfoRestaurant);
+        startActivity(intent);
     }
 
 }

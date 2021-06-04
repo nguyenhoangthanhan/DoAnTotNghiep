@@ -1,4 +1,4 @@
 package com.andeptrai.doantotnghiep.interf;
 
-public class InterfNotify {
+public interface InterfNotify {
 }

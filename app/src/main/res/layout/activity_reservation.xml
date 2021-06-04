@@ -277,12 +277,12 @@
             </TableLayout>
 
 
-            <TextView
-                android:id="@+id/txtNoteReservation"
+            <EditText
+                android:id="@+id/edtNoteReservation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/white"
+                android:background="@drawable/bg_blank"
                 android:hint="@string/notes"
                 android:lines="3"
                 android:paddingStart="@dimen/_5sdp"

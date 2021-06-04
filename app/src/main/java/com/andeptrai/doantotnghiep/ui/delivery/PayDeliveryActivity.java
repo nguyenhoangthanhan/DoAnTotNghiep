@@ -62,6 +62,7 @@ public class PayDeliveryActivity extends AppCompatActivity implements View.OnCli
     int numberFoodInCart = 0;
     String notes = "";
     String detailBill = "";
+    String detailFood = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class PayDeliveryActivity extends AppCompatActivity implements View.OnCli
 
         txtNamePhoneUser.setText(InfoUserCurr.currentName+ " - " + InfoUserCurr.currentPhone);
         txtAddressUser.setText(InfoUserCurr.currentAddress);
-        txtTimeDelivery.setText((new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")).format(new Date()));
+        txtTimeDelivery.setText((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
         updateCart();
 
         rvFoodPay = findViewById(R.id.rvFoodPay);
@@ -108,8 +109,12 @@ public class PayDeliveryActivity extends AppCompatActivity implements View.OnCli
 
     private String getDetailBill(){
         detailBill = "";
+        detailFood = "";
         for(int i = 0; i < deliveryFoodArrayListCart.size(); i++){
             detailBill += deliveryFoodArrayListCart.get(i).getId_food() + " "
+                    + deliveryFoodArrayListCart.get(i).getNumberDelivery() + ",";
+
+            detailFood += deliveryFoodArrayListCart.get(i).getName_food() + " "
                     + deliveryFoodArrayListCart.get(i).getNumberDelivery() + ",";
         }
         return detailBill;
@@ -136,13 +141,13 @@ public class PayDeliveryActivity extends AppCompatActivity implements View.OnCli
 
         final BillDelivery billDelivery = new BillDelivery((new RandomString(CREATE_NEW_BILL, new Random()).nextString())
                 , InfoUserCurr.currentId, currentInfoRestaurant.getId_restaurant()
-                , (new SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(new Date()))
+                , (new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date()))
                 , InfoUserCurr.currentAddress, txtTimeDelivery.getText().toString()
-                , totalMoney, getPaymentMethod(), notes, getDetailBill());
+                , totalMoney, getPaymentMethod(), notes, getDetailBill(), detailFood);
         Log.d("Delivery", "***" + billDelivery.getIdBill() + "__" + billDelivery.getIdUserOrder() + "__"
                 + billDelivery.getIdRestaurant() + "__"+ billDelivery.getTimeCreateBill() + "__"+ billDelivery.getAddressDelivery() + "__"
                 + billDelivery.getTimeDelivery() + "__"+ billDelivery.getTotalMoneyBill() + "__"+ billDelivery.getPayment() + "__"
-                + billDelivery.getNotes() + "__"+ billDelivery.getDetailBill() + "***");
+                + billDelivery.getNotes() + "__"+ billDelivery.getDetailBill()+ "__"+ detailFood + "***");
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlCreateNewBillDelivery
@@ -183,6 +188,7 @@ public class PayDeliveryActivity extends AppCompatActivity implements View.OnCli
                 params.put("payment", billDelivery.getPayment());
                 params.put("notes", billDelivery.getNotes());
                 params.put("detailBill", billDelivery.getDetailBill());
+                params.put("detailFood", billDelivery.getDetailFood());
 
                 return params;
             }
@@ -207,7 +213,7 @@ public class PayDeliveryActivity extends AppCompatActivity implements View.OnCli
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
-                        txtTimeDelivery.setText((new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")).format(calendar.getTime()));
+                        txtTimeDelivery.setText((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(calendar.getTime()));
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
                 timePickerDialog.show();

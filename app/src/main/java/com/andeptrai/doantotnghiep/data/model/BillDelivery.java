@@ -9,13 +9,15 @@ public class BillDelivery extends Bill implements Serializable {
     private String payment;
     private String notes;
     private String detailBill;
+    private String detailFood;
 
     public BillDelivery(String idBill, int idUserOrder, String idRestaurant, String timeCreateBill) {
         super(idBill, idUserOrder, idRestaurant, timeCreateBill);
     }
 
     public BillDelivery(String idBill, int idUserOrder, String idRestaurant, String timeCreateBill
-            , String addressDelivery, String timeDelivery, long totalMoneyBill, String payment, String notes, String detailBill) {
+            , String addressDelivery, String timeDelivery, long totalMoneyBill, String payment, String notes
+            , String detailBill, String detailFood) {
         super(idBill, idUserOrder, idRestaurant, timeCreateBill);
         this.addressDelivery = addressDelivery;
         this.timeDelivery = timeDelivery;
@@ -23,6 +25,15 @@ public class BillDelivery extends Bill implements Serializable {
         this.payment = payment;
         this.notes = notes;
         this.detailBill = detailBill;
+        this.detailFood = detailFood;
+    }
+
+    public String getDetailFood() {
+        return detailFood;
+    }
+
+    public void setDetailFood(String detailFood) {
+        this.detailFood = detailFood;
     }
 
     public String getAddressDelivery() {

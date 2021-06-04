@@ -32,4 +32,10 @@ public class URL {
 
     //get all food by id restaurant
     public static String urlCreateNewBillDelivery = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/createNewBillDelivery.php";
+
+    //get all food by id restaurant
+    public static String urlCreateNewBillReservation = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/createNewBillReservation.php";
+
+    //get all bill delivery by id user
+    public static String urlGetAllBillDeliveryByIdUser = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllBillDeliveryByIdUser.php";
 }
