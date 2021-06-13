@@ -1,5 +1,6 @@
 package com.andeptrai.doantotnghiep.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.RestaurantAdapter;
 import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
+import com.andeptrai.doantotnghiep.data.model.Restaurant;
+import com.andeptrai.doantotnghiep.ui.delivery.ListRestaurantDeliveryActivity;
+import com.andeptrai.doantotnghiep.ui.reservation.ListRestaurantReservationActivity;
 
 import java.util.ArrayList;
 
@@ -33,10 +37,13 @@ public class HomeFragment extends Fragment {
     private ArrayList<InfoRestaurant> infoRestaurantArrayList;
 
     RestaurantAdapter restaurantAdapter;
-    ArrayList<InfoRestaurant> infoRestaurants = new ArrayList<>();
 
     RecyclerView recyclerView;
-    ImageView icon_go_home, icon_go_list_restaurant, icon_go_user;
+    ImageView imgDelivery, imgReservation;
+
+    ArrayList<Restaurant> restaurantArrayListDelivery = new ArrayList<>();
+    ArrayList<Restaurant> restaurantArrayListReservation = new ArrayList<>();
+    ArrayList<Restaurant> restaurantArrayList = new ArrayList<>();
 
     public HomeFragment() {
     }
@@ -66,13 +73,41 @@ public class HomeFragment extends Fragment {
 
         bundle = this.getArguments();
         infoRestaurantArrayList = (ArrayList<InfoRestaurant>) bundle.getSerializable("infoRestaurantArrayList");
+        restaurantArrayList = (ArrayList<Restaurant>) bundle.getSerializable("restaurantArrayList");
 
+        for (int i = 0; i < restaurantArrayList.size();i++){
+            if (restaurantArrayList.get(i).getStatus_restaurant() == 1 ||
+                    restaurantArrayList.get(i).getStatus_restaurant() == 3){
+                restaurantArrayListReservation.add(restaurantArrayList.get(i));
+            }
+            if (restaurantArrayList.get(i).getStatus_restaurant() == 2 ||
+                    restaurantArrayList.get(i).getStatus_restaurant() == 3){
+                restaurantArrayListDelivery.add(restaurantArrayList.get(i));
+            }
+        }
+        imgDelivery = view.findViewById(R.id.imgDelivery);
+        imgReservation = view.findViewById(R.id.imgReservation);
         recyclerView = view.findViewById(R.id.list_restaurant);
         restaurantAdapter = new RestaurantAdapter(infoRestaurantArrayList, getContext());
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(restaurantAdapter);
         restaurantAdapter.notifyDataSetChanged();
-
+        imgDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ListRestaurantDeliveryActivity.class);
+                intent.putExtra("restaurantArrayListDelivery", restaurantArrayListDelivery);
+                startActivity(intent);
+            }
+        });
+        imgReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ListRestaurantReservationActivity.class);
+                intent.putExtra("restaurantArrayListReservation", restaurantArrayListReservation);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

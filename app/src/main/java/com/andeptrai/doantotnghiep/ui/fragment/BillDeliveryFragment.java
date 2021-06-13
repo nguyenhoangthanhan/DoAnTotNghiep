@@ -1,5 +1,6 @@
 package com.andeptrai.doantotnghiep.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,16 +8,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.BillDeliveryAdapter;
-import com.andeptrai.doantotnghiep.data.model.BillDelivery;
 import com.andeptrai.doantotnghiep.data.model.BillDeliveryOrdered;
 import com.andeptrai.doantotnghiep.data.model.InfoUserCurr;
 import com.andeptrai.doantotnghiep.interf.BillDeliveryInterf;
+import com.andeptrai.doantotnghiep.ui.delivery.EditBillDeliveryActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -104,6 +106,7 @@ public class BillDeliveryFragment extends Fragment implements BillDeliveryInterf
     }
 
     private void getAllBillDelivery() {
+        billDeliveryOrderedArrayList = new ArrayList<>();
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlGetAllBillDeliveryByIdUser
                 , new Response.Listener<String>() {
@@ -162,7 +165,21 @@ public class BillDeliveryFragment extends Fragment implements BillDeliveryInterf
 
 
     @Override
-    public void updateBillClickListener(BillDelivery billDelivery, int position) {
+    public void updateBillClickListener(BillDeliveryOrdered billDeliveryOrdered, int position) {
+        currentPositionBill = position;
+        Intent intent = new Intent(getContext(), EditBillDeliveryActivity.class);
+        intent.putExtra("currentBillDelivery", billDeliveryOrdered);
+        startActivityForResult(intent, CODE_REQUEST_EDIT_BILL_DELIVERY);
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CODE_REQUEST_EDIT_BILL_DELIVERY && resultCode == 1001){
+            BillDeliveryOrdered updateBillDelivery = (BillDeliveryOrdered) data.getSerializableExtra("updateBillDelivery");
+            billDeliveryOrderedArrayList.remove(currentPositionBill);
+            billDeliveryOrderedArrayList.add(currentPositionBill, updateBillDelivery);
+            billDeliveryAdapter.notifyItemChanged(currentPositionBill);
+        }
     }
 }

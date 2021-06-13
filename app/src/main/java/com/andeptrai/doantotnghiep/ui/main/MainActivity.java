@@ -10,10 +10,12 @@ import com.andeptrai.doantotnghiep.R;
 import com.andeptrai.doantotnghiep.data.adapter.ViewPagerAdapter;
 import com.andeptrai.doantotnghiep.data.model.InfoRestaurant;
 import com.andeptrai.doantotnghiep.data.model.Notify;
+import com.andeptrai.doantotnghiep.data.model.Restaurant;
 import com.andeptrai.doantotnghiep.ui.fragment.AccountFragment;
 import com.andeptrai.doantotnghiep.ui.fragment.BillDeliveryFragment;
 import com.andeptrai.doantotnghiep.ui.fragment.HomeFragment;
 import com.andeptrai.doantotnghiep.ui.fragment.NotificationFragment;
+import com.andeptrai.doantotnghiep.ui.reservation.BillReservationFragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -42,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
     NotificationFragment notificationFragment = new NotificationFragment();
     AccountFragment accountFragment = new AccountFragment();
     BillDeliveryFragment billDeliveryFragment = new BillDeliveryFragment();
+    BillReservationFragment billReservationFragment = new BillReservationFragment();
 
     ArrayList<InfoRestaurant> infoRestaurants = new ArrayList<>();
+    ArrayList<Restaurant> restaurantArrayList = new ArrayList<>();
     ArrayList<Notify> notifyArrayList = new ArrayList<>();
 
     String responseNotify = null;
@@ -69,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);;
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_restaurant);;
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_user);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_invoices);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_reception_bell);
+        tabLayout.getTabAt(4).setIcon(R.drawable.ic_user);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -85,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
                         tabLayout.getTabAt(1).setIcon(R.drawable.ic_notification2);;
                     }
                     tabLayout.getTabAt(2).setIcon(R.drawable.ic_invoices);
-                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_user);
+                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_reception_bell);
+                    tabLayout.getTabAt(4).setIcon(R.drawable.ic_user);
                 }
                 else if (tab.getPosition() == 1){
                     tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);;
@@ -96,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
                         tabLayout.getTabAt(1).setIcon(R.drawable.ic_notification);;
                     }
                     tabLayout.getTabAt(2).setIcon(R.drawable.ic_invoices);
-                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_user);
+                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_reception_bell);
+                    tabLayout.getTabAt(4).setIcon(R.drawable.ic_user);
 
                     bundleNotify.putSerializable("bundleNotifyArrayList", notifyArrayList);
                     notificationFragment.setArguments(bundleNotify);
@@ -110,7 +118,20 @@ public class MainActivity extends AppCompatActivity {
                         tabLayout.getTabAt(1).setIcon(R.drawable.ic_notification2);;
                     }
                     tabLayout.getTabAt(2).setIcon(R.drawable.ic_invoices2);
-                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_user);
+                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_reception_bell);
+                    tabLayout.getTabAt(4).setIcon(R.drawable.ic_user);
+                }
+                else if(tab.getPosition() == 3){
+                    tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);;
+                    if (check_have_notification == 0){
+                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_bell2);;
+                    }
+                    else{
+                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_notification2);;
+                    }
+                    tabLayout.getTabAt(2).setIcon(R.drawable.ic_invoices);
+                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_serving_dish);
+                    tabLayout.getTabAt(4).setIcon(R.drawable.ic_user);
                 }
                 else{
                     tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);;
@@ -121,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
                         tabLayout.getTabAt(1).setIcon(R.drawable.ic_notification2);;
                     }
                     tabLayout.getTabAt(2).setIcon(R.drawable.ic_invoices);
-                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_user_convert_color);
+                    tabLayout.getTabAt(3).setIcon(R.drawable.ic_reception_bell);
+                    tabLayout.getTabAt(4).setIcon(R.drawable.ic_user_convert_color);
                 }
             }
 
@@ -151,13 +173,26 @@ public class MainActivity extends AppCompatActivity {
                                 infoRestaurants.add(new InfoRestaurant(
                                         object.getString("Id_restaurant"),
                                         object.getString("Name_restaurant"),
-                                        object.getInt("Phone_restaurant"),
+                                        object.getString("Phone_restaurant"),
                                         object.getString("Password"),
                                         object.getString("Address_restaurant"),
                                         object.getDouble("Review_point"),
                                         object.getInt("Status_restaurant"),
                                         object.getString("Short_description"),
                                         object.getString("Promotion")
+                                ));
+
+                                restaurantArrayList.add(new Restaurant(
+                                        object.getString("Id_restaurant"),
+                                        object.getString("Name_restaurant"),
+                                        object.getString("Phone_restaurant"),
+                                        object.getString("Password"),
+                                        object.getString("Address_restaurant"),
+                                        object.getDouble("Review_point"),
+                                        object.getInt("Status_restaurant"),
+                                        object.getString("Short_description"),
+                                        object.getString("Promotion"),
+                                        object.getString("List_kind")
                                 ));
 
                             } catch (JSONException e) {
@@ -183,8 +218,10 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFrag(homeFragment, "homeFrm");
         viewPagerAdapter.addFrag(notificationFragment, "listResFrm");
         viewPagerAdapter.addFrag(billDeliveryFragment, "BillDeliveryFrm");
+        viewPagerAdapter.addFrag(billReservationFragment, "BillReservationFrm");
         viewPagerAdapter.addFrag(accountFragment, "AccountFrm");
         bundleRes.putSerializable("infoRestaurantArrayList", infoRestaurants);
+        bundleRes.putSerializable("restaurantArrayList", restaurantArrayList);
         homeFragment.setArguments(bundleRes);
         bundleNotify.putSerializable("bundleNotifyArrayList", notifyArrayList);
         bundleNotify.putSerializable("responseNotify", responseNotify);

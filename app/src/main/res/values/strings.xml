@@ -46,8 +46,8 @@
     <string name="accept">Xác nhận</string>
     <string name="reject">Từ chối</string>
     <string name="yetAccepted">Chưa xác nhận</string>
-    <string name="accepted">Đã xác nhận</string>
-    <string name="rejected">Đã từ chối</string>
+    <string name="accepted">Được xác nhận</string>
+    <string name="rejected">Bị từ chối</string>
     <string name="total_money">Tổng số tiền:</string>
     <string name="time_create_bill">Thời gian tạo đơn hàng:</string>
     <string name="name_user_order">Tên người đặt hàng:</string>
@@ -61,6 +61,11 @@
     <string name="accept_yet">Chưa xác nhận</string>
     <string name="bill_delivery">Đơn giao hàng</string>
     <string name="bill_reservation">Đơn đặt chỗ</string>
+    <string name="change">"Thay đổi"</string>
+    <string name="change_status_confirm">"Thay đổi trạng thái đơn hàng"</string>
+    <string name="change_bill_reservation">"Thay đổi hóa đơn đặt chỗ"</string>
+    <string name="save_bill">Lưu hóa đơn</string>
+    <string name="ok">ok</string>
 
     <!--  API Key  -->
     <string name="map_api_key">AIzaSyAVoMkxOfbKNH0Cufu-ZnTFi1w4diUKmRY</string>

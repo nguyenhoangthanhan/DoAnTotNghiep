@@ -89,51 +89,18 @@ public class NotificationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
 
-//        bundle = this.getArguments();
-//        notifyArrayList = (ArrayList<Notify>) bundle.getSerializable("bundleNotifyArrayList");
-//        String response = bundle.getString("responseNotify");
-//        Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
-//        try {
-//            JSONArray jsonArray = new JSONArray(response);
-//            for (int i = 0; i < jsonArray.length(); i++){
-//                JSONObject jsonObject = jsonArray.getJSONObject(i);
-//
-//                notifyArrayList.add(new Notify(jsonObject.getString("Id_notification"),
-//                        jsonObject.getString("Id_restaurant"),
-//                        jsonObject.getString("Title_notify"),
-//                        jsonObject.getString("Content_notification"),
-//                        jsonObject.getString("Time_create_notification")));
-//            }
-//
-//        } catch (JSONException e) {
-//            Toast.makeText(getContext(), "Get notify error exception! -- " + e.toString(), Toast.LENGTH_SHORT).show();
-//            e.printStackTrace();
-//        }
-
-        getNotify();
         rvNotify = view.findViewById(R.id.rvNotify);
         notifyAdapter = new NotifyAdapter(getContext(), notifyArrayList);
         rvNotify.setLayoutManager(new LinearLayoutManager(getContext()));
         rvNotify.setAdapter(notifyAdapter);
         notifyAdapter.notifyDataSetChanged();
-
-//        new Thread(new Runnable() {
-//            public void run() {
-//                try {
-//                    Thread.sleep(5000);
-//                } catch( InterruptedException e ) {
-//
-//                }
-//                if (notifyAdapter.getItemCount() == 0){
-//                }
-//            }
-//        }).start();
-
+        getNotify();
         return view;
     }
 
 
     private void getNotify() {
+        notifyArrayList = new ArrayList<>();
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.POST, urlGetNotificationByListIdRes
                 , new Response.Listener<String>() {

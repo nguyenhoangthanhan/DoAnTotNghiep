@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp"
+        android:text="@string/change_status_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <RadioGroup
+        android:id="@+id/groupPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp">
+
+        <RadioButton
+            android:id="@+id/paymentAirplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ví airplay" />
+
+        <RadioButton
+            android:id="@+id/paymentCash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiền mặt" />
+
+        <RadioButton
+            android:id="@+id/paymentCreditCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thẻ tín dụng/ghi nợ" />
+
+        <RadioButton
+            android:id="@+id/paymentATM_InternetBanking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ATM/Internet Banking" />
+    </RadioGroup>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/btnAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:textAllCaps="false" />
+
+        <Button
+            android:layout_marginStart="@dimen/_15sdp"
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textAllCaps="false" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </TableRow>
+</LinearLayout>

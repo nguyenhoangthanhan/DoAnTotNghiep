@@ -38,4 +38,19 @@ public class URL {
 
     //get all bill delivery by id user
     public static String urlGetAllBillDeliveryByIdUser = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllBillDeliveryByIdUser.php";
+
+    //update bil delivery by id bill
+    public static String urlUpdateBillDeliveryByIdBill = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/updateBillDeliveryByIdBill.php";
+
+    //get all bill reservation by id user
+    public static String urlGetAllBillReservationByIdUser = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllBillReservationByIdUser.php";
+
+    //update bill reservation by id bill
+    public static String urlUpdateBillReservationByIdBillClient = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/updateBillReservationByIdBillClient.php";
+
+    //url get all kind Delivery
+    public static String urlGetAllKindDelivery = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllKindDelivery.php";
+
+    //url get all kind Reservation
+    public static String urlGetAllKindReservation = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/getAllKindReservation.php";
 }

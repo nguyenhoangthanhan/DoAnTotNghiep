@@ -104,28 +104,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onResponse(String response) {
                         if (response.trim().equals("Register success")){
                             Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-//                            InfoUserCurr.currentId = -1;
-//                            InfoUserCurr.currentUsername = usernameNew;
-//                            InfoUserCurr.currentPwd = passwordNew;
-//                            InfoUserCurr.currentPhone = phoneNew;
-//                            InfoUserCurr.currentEmail = emailNew;
-//                            InfoUserCurr.currentName = nameNew;
-//                            InfoUserCurr.currentAddress = addressNew;
-//                            startActivity(intent);
-
                             ReadJSON(usernameNew, passwordNew);
                         }
                         else if(response.trim().equals("Error when insert into Database")){
+                            txtShowError.setVisibility(View.VISIBLE);
                             txtShowError.setText("Lỗi khi thêm dữ liệu vào database");
                         }
                         else if(response.trim().equals("Username already exist")){
+                            txtShowError.setVisibility(View.VISIBLE);
                             txtShowError.setText("Tài khoản đã tồn tại");
                         }
                         else if(response.trim().equals("Error create account")){
+                            txtShowError.setVisibility(View.VISIBLE);
                             txtShowError.setText("Lỗi tạo tài khoản");
                         }
                         else{
+                            txtShowError.setVisibility(View.VISIBLE);
                             txtShowError.setText("Lỗi tạo tài khoản");
                         }
                     }
@@ -145,6 +139,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 params.put("nameNew", nameNew);
                 params.put("emailNew", emailNew);
                 params.put("addressNew", addressNew);
+                params.put("checkAdmin", "0");
                 return params;
             }
         };

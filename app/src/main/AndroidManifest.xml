@@ -17,7 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.delivery_ordered.DetailBillDeliveryOrderedActivity"></activity>
+        <activity android:name=".ui.reservation.ListRestaurantReservationActivity"></activity>
+        <activity android:name=".ui.delivery.ListRestaurantDeliveryActivity" />
+        <activity android:name=".ui.delivery.EditBillDeliveryActivity" />
+        <activity android:name=".ui.delivery_ordered.DetailBillDeliveryOrderedActivity" />
         <activity android:name=".ui.reservation.ReservationActivity" />
         <activity android:name=".ui.delivery.PayDeliveryActivity" />
         <activity android:name=".ui.delivery.DeliveryActivity" />

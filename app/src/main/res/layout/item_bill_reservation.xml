@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="@dimen/_5sdp"
+    android:gravity="center_vertical"
+    android:background="#eee"
+    android:layout_marginTop="@dimen/_3sdp"
+    android:layout_marginBottom="@dimen/_3sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:id="@+id/viewBillDelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:id="@+id/txtNameRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="Nhà hàng biển tôm 2" />
+
+        <LinearLayout
+            android:id="@+id/viewNumberTotalMoneyFood"
+            android:layout_below="@id/txtNameRestaurant"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="12.5sp"
+                android:textColor="@color/colorGray444"
+                android:id="@+id/txtAdultsNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 người lớn" />
+
+            <TextView
+                android:textSize="12.5sp"
+                android:textColor="@color/colorGray444"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - " />
+
+            <TextView
+                android:id="@+id/txtChildrenNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 trẻ em"
+                android:textColor="@color/colorGray444"
+                android:textSize="12.5sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_below="@id/viewNumberTotalMoneyFood"
+            android:id="@+id/txtTimeCome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:20:20 24/8/2021"
+            android:textColor="@color/colorGray444"
+            android:textSize="12.5sp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/view_edit_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtEditBillReservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:background="@drawable/bg_blue_3f51b5"
+            android:padding="@dimen/_2sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:text="@string/edit"
+            android:textColor="@color/blue3F51B5" />
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:visibility="invisible"
+                android:id="@+id/imgDetailBillReservation"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:src="@drawable/ic_eye" />
+            <TextView
+                android:layout_marginStart="@dimen/_7sdp"
+                android:visibility="visible"
+                android:id="@+id/txtYetAccepted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_blue_3f51b5"
+                android:padding="@dimen/_2sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/yetAccepted"
+                android:textColor="@color/blue3F51B5" />
+
+            <TextView
+                android:layout_marginStart="@dimen/_7sdp"
+                android:visibility="gone"
+                android:id="@+id/txtAccepted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_green_4caf50"
+                android:padding="@dimen/_2sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/accepted"
+                android:textColor="@color/green_4caf50" />
+
+
+            <TextView
+                android:layout_marginStart="@dimen/_7sdp"
+                android:visibility="gone"
+                android:id="@+id/txtRejected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rejected"
+                android:padding="@dimen/_2sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/rejected"
+                android:textColor="@color/red_050" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

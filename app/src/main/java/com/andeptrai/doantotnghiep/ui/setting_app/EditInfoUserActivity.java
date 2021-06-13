@@ -31,7 +31,7 @@ public class EditInfoUserActivity extends AppCompatActivity {
     EditText edtPrivateName, edtPrivatePhone, edtPrivateEmail, edtPrivateAddress;
     TextView txtUsername;
     Button btnSaveNewPrivateInfo;
-    private static String urlUpdateInfoUser = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/updateInfoUser.php";
+    public static String urlUpdateInfoUser = "http://"+ IP.ip+"/DoAnTotNghiep/androidwebservice/updateInfoUser.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

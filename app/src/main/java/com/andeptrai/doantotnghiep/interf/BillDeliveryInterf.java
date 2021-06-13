@@ -1,7 +1,7 @@
 package com.andeptrai.doantotnghiep.interf;
 
-import com.andeptrai.doantotnghiep.data.model.BillDelivery;
+import com.andeptrai.doantotnghiep.data.model.BillDeliveryOrdered;
 
 public interface BillDeliveryInterf {
-    void updateBillClickListener(BillDelivery billDelivery, int position);
+    void updateBillClickListener(BillDeliveryOrdered billDeliveryOrdered, int position);
 }

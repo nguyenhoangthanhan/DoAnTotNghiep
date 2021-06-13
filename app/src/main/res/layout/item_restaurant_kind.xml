@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_restaurant_kind"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_margin="@dimen/_3sdp"
+            android:id="@+id/imgAvtRes"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:src="@drawable/ic_diet" />
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:id="@+id/txtNameRestaurant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nha hang hoa cai huong" />
+
+            <TextView
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:textColor="@color/colorGray666"
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="So 1, ngo thi nham, dong da, ha noi" />
+
+            <TextView
+                android:textColor="@color/colorGray666"
+                android:id="@+id/txtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="011447788" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_2sdp"
+        android:layout_marginEnd="@dimen/_2sdp"
+        android:background="@color/colorGray333"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"/>
+</LinearLayout>

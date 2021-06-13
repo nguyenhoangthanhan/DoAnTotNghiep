@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class InfoRestaurant implements Serializable {
     private String id_restaurant;
     private String name_restaurant;
-    private int phone_restaurant;
+    private String phone_restaurant;
     private String password;
     private String address_restaurant;
     private double review_point;
@@ -16,7 +16,7 @@ public class InfoRestaurant implements Serializable {
     public InfoRestaurant() {
     }
 
-    public InfoRestaurant(String id_restaurant, String name_restaurant, int phone_restaurant
+    public InfoRestaurant(String id_restaurant, String name_restaurant, String phone_restaurant
             , String password, String address_restaurant, double review_point, int status_restaurant) {
         this.id_restaurant = id_restaurant;
         this.name_restaurant = name_restaurant;
@@ -27,7 +27,7 @@ public class InfoRestaurant implements Serializable {
         this.status_restaurant = status_restaurant;
     }
 
-    public InfoRestaurant(String id_restaurant, String name_restaurant, int phone_restaurant
+    public InfoRestaurant(String id_restaurant, String name_restaurant, String phone_restaurant
             , String password, String address_restaurant, double review_point
             , int status_restaurant, String short_description, String promotion) {
         this.id_restaurant = id_restaurant;
@@ -81,11 +81,11 @@ public class InfoRestaurant implements Serializable {
         this.name_restaurant = name_restaurant;
     }
 
-    public int getPhone_restaurant() {
+    public String getPhone_restaurant() {
         return phone_restaurant;
     }
 
-    public void setPhone_restaurant(int phone_restaurant) {
+    public void setPhone_restaurant(String phone_restaurant) {
         this.phone_restaurant = phone_restaurant;
     }
 

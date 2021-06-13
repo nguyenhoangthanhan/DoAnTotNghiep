@@ -24,12 +24,14 @@
                 <LinearLayout
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
+
                     <ImageView
-                        android:padding="@dimen/_10sdp"
-                        android:background="@color/foody_delivery"
-                        android:src="@drawable/giaohang"
+                        android:id="@+id/imgDelivery"
                         android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"/>
+                        android:layout_height="@dimen/_70sdp"
+                        android:background="@color/foody_delivery"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/giaohang" />
 
                     <TextView
                         android:textColor="@color/black"
@@ -44,11 +46,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:padding="@dimen/_10sdp"
-                        android:background="@color/foody_delivery"
-                        android:src="@drawable/ic_serving_dish"
+                        android:id="@+id/imgReservation"
                         android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"/>
+                        android:layout_height="@dimen/_70sdp"
+                        android:background="@color/foody_delivery"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_serving_dish" />
 
                     <TextView
                         android:textColor="@color/colorGray333"
